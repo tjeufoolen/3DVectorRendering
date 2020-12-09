@@ -107,6 +107,31 @@ namespace view {
         );
     }
 
+    // This code is based of; https://gist.github.com/derofim/912cfc9161269336f722
+    void view::renderCircle(double centerX, double centerY, double radius, const utils::colour &colour) {
+        setRenderColor(colour);
+
+        for (int dy = 1; dy <= radius; dy++)
+        {
+            double dx = floor(sqrt((2.0 * radius * dy) - (dy * dy)));
+
+            SDL_RenderDrawLineF(
+                renderer_.get(),
+                static_cast<float>(centerX - dx),
+                static_cast<float>(centerY + dy - radius),
+                static_cast<float>(centerX + dx),
+                static_cast<float>(centerY + dy - radius)
+            );
+            SDL_RenderDrawLineF(
+                renderer_.get(),
+                static_cast<float>(centerX - dx),
+                static_cast<float>(centerY - dy + radius),
+                static_cast<float>(centerX + dx),
+                static_cast<float>(centerY - dy + radius)
+            );
+        }
+    }
+
     void view::renderText(const std::string& text, double x, double y, int size, const utils::colour &colour) {
         std::string fontPath{std::string(SDL_GetBasePath()).append("/assets/fonts/OpenSans-Regular.ttf")};
         TTF_Font *font{TTF_OpenFont(fontPath.c_str(), size)};

@@ -29,6 +29,7 @@ namespace view {
 
         void renderRectangle(double x, double y, double width, double height, const utils::colour& colour, bool fill);
         void renderLine(double sx, double sy, double ex, double ey, const utils::colour& colour);
+        void renderCircle(double centerX, double centerY, double radius, const utils::colour &colour);
         void renderText(const std::string& text, double x, double y, int size, const utils::colour& colour);
     private:
         window_ptr createWindow(const std::string& title, int width, int height);

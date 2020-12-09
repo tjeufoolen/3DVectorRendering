@@ -45,6 +45,8 @@ void app::draw() {
     view_.renderRectangle(250, 200, 100, 100, utils::colours::green, false);
     view_.renderRectangle(250, 300, 100, 100, utils::colours::blue, false);
 
+    view_.renderCircle(500, 250, 100, utils::colours::yellow);
+
     view_.renderLine(100, 500, 800, 500, utils::colours::purple);
 
     view_.renderText("Hello World!", 100, 600, 24, utils::colours::white);
