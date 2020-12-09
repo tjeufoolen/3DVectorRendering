@@ -95,15 +95,15 @@ namespace view {
         }
     }
 
-    void view::renderLine(double sx, double sy, double ex, double ey, const utils::colour &colour) {
+    void view::renderLine(double startX, double startY, double endX, double endY, const utils::colour &colour) {
         setRenderColor(colour);
 
         SDL_RenderDrawLineF(
             renderer_.get(),
-            static_cast<float>(sx),
-            static_cast<float>(sy),
-            static_cast<float>(ex),
-            static_cast<float>(ey)
+            static_cast<float>(startX),
+            static_cast<float>(startY),
+            static_cast<float>(endX),
+            static_cast<float>(endY)
         );
     }
 
