@@ -35,6 +35,8 @@ void app::run() {
         draw();
         view_.render();
     }
+
+    view_.close();
 }
 
 void app::draw() {
