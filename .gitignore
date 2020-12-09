@@ -1,3 +1,9 @@
+# Clion
+.idea/
+
+# Visual studio
+.vs/
+
 # OSX
 .DS_Store
 
