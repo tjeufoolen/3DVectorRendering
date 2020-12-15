@@ -12,13 +12,18 @@ namespace models {
         constexpr static const double PI = 3.14159265358979323846;
         constexpr static double const EPSILON = 1.0E-09; // 1 after 9 zero's
 
+        matrix_ptr multiply(Matrix &l, Matrix &r);
+
         // Matrices
         static matrix_ptr translationMatrix(double tx, double ty, double tz);
+        static matrix_ptr rotateX(double degrees);
+        static matrix_ptr rotateY(double degrees);
+        static matrix_ptr rotateZ(double degrees);
         matrix_ptr localSpaceScalingMatrix(double x, double y, double z, double sx, double sy, double sz);
         matrix_ptr worldSpaceScalingMatrix(double sx, double sy, double sz);
 
-        matrix_ptr multiply(Matrix &l, Matrix &r);
-        static double radial(double degrees);
+        // Helpers
+        static double degreesToRadial(double degrees);
     private:
         static const int columns_;
         static const int rows_;
