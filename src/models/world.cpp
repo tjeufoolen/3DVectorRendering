@@ -1,15 +1,14 @@
 #include "world.h"
 
 namespace models {
-    std::vector<objects::object *> world::objects() {
-        return objects_;
+    world::world(view::view& view)
+        :   origin_{0,0,0}, view_{view} {}
+
+    void world::addObject(std::unique_ptr<objects::object> obj) {
+        objects_.emplace_back(std::move(obj));
     }
 
-    void world::addObject(objects::object &obj) {
-        objects_.push_back(&obj);
-    }
-
-    point3d world::origin() {
+    point3d world::origin() const {
         return origin_;
     }
 
@@ -17,5 +16,11 @@ namespace models {
         origin_.x(x);
         origin_.y(y);
         origin_.z(z);
+    }
+
+    void world::draw() {
+        for (auto& obj : objects_) {
+            obj->draw(origin_);
+        }
     }
 }

@@ -1,6 +1,6 @@
 #include <SDL.h>
 
-#include "utils/logger.h"
+#include "logger.h"
 #include "app.h"
 
 //

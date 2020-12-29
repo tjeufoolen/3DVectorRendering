@@ -1,10 +1,12 @@
 #ifndef LINAL_EINDOPDRACHT_APP_H
 #define LINAL_EINDOPDRACHT_APP_H
 
-#include "view/view.h"
+#include "view.h"
+#include "world.h"
 
 class app {
     view::view view_;
+    models::world world_;
 public:
     app();
 

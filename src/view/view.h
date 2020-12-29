@@ -5,7 +5,7 @@
 #include <memory>
 #include <string>
 
-#include "utils/colour.h"
+#include "colour.h"
 
 namespace view {
     using window_ptr = std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)>;
@@ -28,7 +28,7 @@ namespace view {
         void close();
 
         void renderRectangle(double x, double y, double width, double height, const utils::colour& colour, bool fill);
-        void renderLine(double startX, double startY, double endX, double endY, const utils::colour& colour);
+        void renderLine(double beginX, double beginY, double endX, double endY, const utils::colour& colour);
         void renderCircle(double centerX, double centerY, double radius, const utils::colour &colour);
         void renderText(const std::string& text, double x, double y, int size, const utils::colour& colour);
     private:

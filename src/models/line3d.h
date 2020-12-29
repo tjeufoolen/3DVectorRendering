@@ -5,18 +5,18 @@
 
 namespace models {
     class line3d {
-        point3d start_;
+        point3d begin_;
         point3d end_;
     public:
-        line3d(const point3d& start, const point3d& end);
+        line3d(const point3d& begin, const point3d& end);
 
-        point3d& start();
+        point3d& begin();
         point3d& end();
 
         template<typename T>
         void multiply(T scalar) {
-            start_.x(start_.x() * scalar);
-            start_.y(start_.y() * scalar);
+            begin_.x(begin_.x() * scalar);
+            begin_.y(begin_.y() * scalar);
 
             end_.x(end_.x() * scalar);
             end_.y(end_.y() * scalar);

@@ -1,28 +1,26 @@
 #include "object.h"
 
+#include <iostream>
+
+#include "config.h"
+
 namespace objects {
-    object::object() = default;
+    object::object(view::view& view, const models::point3d& origin)
+        :   view_{view}, origin_{origin} {}
 
     void object::transform(models::Matrix &m) {
         for (auto &line : lines_) {
-            line.start().transform(m);
+            line.begin().transform(m);
             line.end().transform(m);
         }
     }
 
     void object::addLine(models::line3d line) {
         lines_.emplace_back(line);
-
-        points_.push_back(&line.start());
-        points_.push_back(&line.end());
     }
 
     std::vector<models::line3d> & object::lines() {
         return lines_;
-    }
-
-    std::vector<models::point3d*>& object::points() {
-        return points_;
     }
 
     models::point3d object::origin() {
@@ -33,5 +31,26 @@ namespace objects {
         origin_.x(x);
         origin_.y(y);
         origin_.z(z);
+    }
+
+    void object::draw(const models::point3d& worldOrigin) {
+        auto objOrigin = origin();
+
+        // draw lines
+        for (auto& line : lines_) {
+            // calculate world and object origin
+            double ox = worldOrigin.x() + objOrigin.x();
+            double oy = worldOrigin.y() + objOrigin.y();
+
+            // draw around origin
+            double bx = ox + line.begin().x();
+            double by = oy + line.begin().y();
+            double ex = ox + line.end().x();
+            double ey = oy + line.end().y();
+
+            view_.renderLine(bx, by, ex, ey, config::LINE_STROKE_COLOUR);
+//            view_.renderCircle(bx, by, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
+//            view_.renderCircle(ex, ey, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
+        }
     }
 }

@@ -7,8 +7,8 @@ namespace models {
 
         Matrix m;
 
-        for (int i = 0; i < l.size(); i++) {
-            for (int j = 0; j < r.size(); j++) {
+        for (int i {0}; i < l.size(); i++) {
+            for (int j {0}; j < r.size(); j++) {
                 m[i][j] = l[i][0] * r[0][j] + l[i][1] * r[1][j] + l[i][2] * r[2][j] + l[i][3] * r[3][j];
             }
         }
@@ -28,7 +28,7 @@ namespace models {
     }
 
     matrix_ptr matrix::rotateX(double degrees) {
-        double a = degreesToRadial(degrees);
+        double a { degreesToRadial(degrees) };
 
         Matrix m;
 
@@ -41,7 +41,7 @@ namespace models {
     }
 
     matrix_ptr matrix::rotateY(double degrees) {
-        double a = degreesToRadial(degrees);
+        double a { degreesToRadial(degrees) };
 
         Matrix m;
 
@@ -54,7 +54,7 @@ namespace models {
     }
 
     matrix_ptr matrix::rotateZ(double degrees) {
-        double a = degreesToRadial(degrees);
+        double a { degreesToRadial(degrees) };
 
         Matrix m;
 

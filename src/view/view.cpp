@@ -20,7 +20,7 @@ namespace view {
 
     void view::init() {
         if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-            std::string msg = std::string("SDL_Init Error: ").append(SDL_GetError());
+            std::string msg { std::string("SDL_Init Error: ").append(SDL_GetError()) };
         }
 
         IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
@@ -95,13 +95,13 @@ namespace view {
         }
     }
 
-    void view::renderLine(double startX, double startY, double endX, double endY, const utils::colour &colour) {
+    void view::renderLine(double beginX, double beginY, double endX, double endY, const utils::colour &colour) {
         setRenderColor(colour);
 
         SDL_RenderDrawLineF(
             renderer_.get(),
-            static_cast<float>(startX),
-            static_cast<float>(startY),
+            static_cast<float>(beginX),
+            static_cast<float>(beginY),
             static_cast<float>(endX),
             static_cast<float>(endY)
         );
@@ -111,9 +111,9 @@ namespace view {
     void view::renderCircle(double centerX, double centerY, double radius, const utils::colour &colour) {
         setRenderColor(colour);
 
-        for (int dy = 1; dy <= radius; dy++)
+        for (int dy {1}; dy <= radius; dy++)
         {
-            double dx = floor(sqrt((2.0 * radius * dy) - (dy * dy)));
+            double dx { floor(sqrt((2.0 * radius * dy) - (dy * dy))) };
 
             SDL_RenderDrawLineF(
                 renderer_.get(),
@@ -133,13 +133,13 @@ namespace view {
     }
 
     void view::renderText(const std::string& text, double x, double y, int size, const utils::colour &colour) {
-        std::string fontPath{std::string(SDL_GetBasePath()).append("/assets/fonts/OpenSans-Regular.ttf")};
-        TTF_Font *font{TTF_OpenFont(fontPath.c_str(), size)};
-        SDL_Color textColor{colour.r, colour.g, colour.b, colour.a};
+        std::string fontPath { std::string(SDL_GetBasePath()).append("/assets/fonts/OpenSans-Regular.ttf") };
+        TTF_Font *font { TTF_OpenFont(fontPath.c_str(), size) };
+        SDL_Color textColor { colour.r, colour.g, colour.b, colour.a };
 
-        SDL_Surface* surfaceMessage = TTF_RenderText_Blended(font, text.c_str(), textColor);
-        SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer_.get(), surfaceMessage);
-        SDL_Rect Message_rect{static_cast<int>(x), static_cast<int>(y), surfaceMessage->w, surfaceMessage->h};
+        SDL_Surface* surfaceMessage { TTF_RenderText_Blended(font, text.c_str(), textColor) };
+        SDL_Texture* Message { SDL_CreateTextureFromSurface(renderer_.get(), surfaceMessage) };
+        SDL_Rect Message_rect { static_cast<int>(x), static_cast<int>(y), surfaceMessage->w, surfaceMessage->h };
         SDL_RenderCopy(renderer_.get(), Message, nullptr, &Message_rect);
 
         SDL_FreeSurface(surfaceMessage);

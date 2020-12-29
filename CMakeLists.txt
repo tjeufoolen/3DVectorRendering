@@ -4,7 +4,7 @@ project(LINAL_Eindopdracht)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
-set(RUN_TESTS TRUE) # Enable or disable tests
+set(RUN_TESTS FALSE) # Enable or disable tests
 
 list(APPEND CMAKE_PREFIX_PATH "external/SDL2")
 list(APPEND CMAKE_PREFIX_PATH "external/SDL2_image")

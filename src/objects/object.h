@@ -3,27 +3,33 @@
 
 #include <vector>
 
-#include "models/matrix.h"
-#include "models/line3d.h"
+#include "matrix.h"
+#include "line3d.h"
+#include "view.h"
+
+namespace models {
+    class world; // forward declare
+}
 
 namespace objects {
-    struct object {
-        object();
+    class object {
+        std::vector<models::line3d> lines_;
+
+        models::point3d origin_;
+        view::view& view_;
+    public:
+        object(view::view& view, const models::point3d& origin = {0, 0, 0});
 
         void transform(models::Matrix& m);
 
         std::vector<models::line3d>& lines();
-        std::vector<models::point3d*>& points();
 
         models::point3d origin();
         void origin(double x, double y, double z);
+
+        void draw(const models::point3d& worldOrigin);
     protected:
         void addLine(models::line3d line);
-    private:
-        std::vector<models::line3d> lines_;
-        std::vector<models::point3d*> points_;
-
-        models::point3d origin_ = {0,0,0};
     };
 }
 
