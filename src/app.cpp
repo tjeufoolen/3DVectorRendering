@@ -3,6 +3,7 @@
 #include "logger.h"
 #include "cube.h"
 #include "pyramid.h"
+#include "spaceship.h"
 #include "config.h"
 
 app::app()
@@ -13,8 +14,10 @@ app::app()
 {
 //    std::unique_ptr<objects::object> cube { std::make_unique<objects::cube>(view_, models::point3d{100,100,0}) };
 //    world_.addObject(std::move(cube));
-    std::unique_ptr<objects::object> pyramid { std::make_unique<objects::pyramid>(view_, models::point3d{100,0,-100}) };
-    world_.addObject(std::move(pyramid));
+//    std::unique_ptr<objects::object> pyramid { std::make_unique<objects::pyramid>(view_, models::point3d{100,0,-100}) };
+//    world_.addObject(std::move(pyramid));
+    std::unique_ptr<objects::object> spaceship { std::make_unique<objects::spaceship>(view_, models::point3d{0,0,0}) };
+    world_.addObject(std::move(spaceship));
 
 
     // temp: temporarily for debug purposes, remove after!

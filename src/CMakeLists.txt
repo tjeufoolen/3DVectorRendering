@@ -6,6 +6,7 @@ target_sources(${PROJECT_NAME} PRIVATE
     "${CMAKE_CURRENT_LIST_DIR}/objects/object.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/objects/cube.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/objects/pyramid.cpp"
+    "${CMAKE_CURRENT_LIST_DIR}/objects/spaceship.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/models/line3d.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/models/matrix.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/models/point3d.cpp"
