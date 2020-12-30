@@ -2,6 +2,7 @@
 
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <iostream>
 
 namespace view {
     view::view(const std::string &title, int width, int height, const utils::colour &bgColour, const std::string& iconPath)
@@ -45,6 +46,11 @@ namespace view {
     void view::close() {
         SDL_DestroyWindow(window_.get());
         SDL_Quit();
+    }
+
+    void view::debug(bool show)
+    {
+        debug_ = show;
     }
 
     window_ptr view::createWindow(const std::string& title, int width, int height) {
@@ -98,6 +104,8 @@ namespace view {
     void view::renderLine(double beginX, double beginY, double endX, double endY, const utils::colour &colour) {
         setRenderColor(colour);
 
+        if (debug_) std::cout << "line [x" << beginX << ", y" << beginY << "] -> [x" << endX << ", y" << endY << "]" << std::endl;
+
         SDL_RenderDrawLineF(
             renderer_.get(),
             static_cast<float>(beginX),
@@ -110,6 +118,8 @@ namespace view {
     // This code is based of; https://gist.github.com/derofim/912cfc9161269336f722
     void view::renderCircle(double centerX, double centerY, double radius, const utils::colour &colour) {
         setRenderColor(colour);
+
+        if (debug_) std::cout << "circle [x" << centerX << ", y" << centerY << "]" << std::endl;
 
         for (int dy {1}; dy <= radius; dy++)
         {

@@ -20,7 +20,7 @@ namespace objects {
     public:
         object(view::view& view, const models::point3d& origin = {0, 0, 0});
 
-        void transform(models::Matrix& m);
+        void transform(const models::Matrix& m);
 
         std::vector<models::line3d>& lines();
 
@@ -28,6 +28,8 @@ namespace objects {
         void origin(double x, double y, double z);
 
         void draw(const models::point3d& worldOrigin);
+
+        void print();
     protected:
         void addLine(models::line3d line);
     };

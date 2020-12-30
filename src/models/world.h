@@ -18,11 +18,14 @@ namespace models {
         world(view::view& view);
 
         void addObject(std::unique_ptr<objects::object> obj);
+        void transformObjects(const models::Matrix& m);
 
         point3d origin() const;
         void origin(double x, double y, double z);
 
         void draw();
+
+        void print();
     };
 }
 

@@ -10,7 +10,7 @@ namespace models {
         double z_;
         double w_;
     public:
-        point3d(double x=0, double y=0, double z=0);
+        point3d(double x=0, double y=0, double z=0, double w=1);
 
         void x(double v);
         double x() const;
@@ -18,8 +18,12 @@ namespace models {
         double y() const;
         void z(double v);
         double z() const;
+        void w(double w);
+        double w() const;
 
-        void transform(Matrix& m);
+        void transform(const Matrix& m);
+        std::unique_ptr<point3d> getPerspectiveCoordinate(const models::Matrix& m) const;
+
         void print() const;
     };
 }

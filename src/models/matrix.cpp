@@ -1,5 +1,8 @@
 #include "matrix.h"
 
+#include <string>
+#include <iostream>
+
 namespace models {
     matrix_ptr matrix::multiply(Matrix &l, Matrix &r) {
         if (l[0].size() != r.size())
@@ -12,6 +15,21 @@ namespace models {
                 m[i][j] = l[i][0] * r[0][j] + l[i][1] * r[1][j] + l[i][2] * r[2][j] + l[i][3] * r[3][j];
             }
         }
+
+        return std::make_unique<Matrix>(m);
+    }
+
+    matrix_ptr matrix::projectionMatrix(double fovy, double near, double far) {
+        Matrix m;
+
+        double scale = near*tan(fovy*0.5);
+        double a = (-far)/(far-near);
+        double b = (-far*near)/(far-near);
+
+        m[0][0] = scale; m[0][1] =   0.0; m[0][2] = 0.0; m[0][3] =  0.0;
+        m[1][0] =   0.0; m[1][1] = scale; m[1][2] = 0.0; m[1][3] =  0.0;
+        m[2][0] =   0.0; m[2][1] =   0.0; m[2][2] =   a; m[2][3] = -1.0;
+        m[3][0] =   0.0; m[3][1] =   0.0; m[3][2] =   b; m[3][3] =  0.0;
 
         return std::make_unique<Matrix>(m);
     }
@@ -90,5 +108,24 @@ namespace models {
 
     double matrix::degreesToRadial(double degrees) {
         return degrees / 180.0 * PI;
+    }
+
+    void matrix::print(const Matrix &m) {
+        auto rows = m.size();
+        auto cols = m[0].size();
+
+        std::cout << "--------------------------------------------\n";
+        for (int r{0}; r<rows; r++) {
+            std::string line;
+
+            for (int c{0}; c<cols; c++) {
+                line.append(" ");
+                line.append(std::to_string(m[r][c]));
+            }
+
+            line.erase(0, 1);
+            std::cout << line << "\n";
+        }
+        std::cout << "--------------------------------------------\n";
     }
 }

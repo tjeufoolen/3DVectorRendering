@@ -10,6 +10,9 @@ namespace config {
 
     static int WINDOW_WIDTH = 1080;
     static int WINDOW_HEIGHT = 720;
+
+    static int ROTATION_DEGREES_PER_KEY_PRESS = 1;
+    static int MOVE_STEPS_PER_KEY_PRESS = 1;
 }
 
 #endif //LINAL_EINDOPDRACHT_CONFIG_H

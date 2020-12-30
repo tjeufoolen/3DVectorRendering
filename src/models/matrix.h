@@ -15,6 +15,7 @@ namespace models {
         matrix_ptr multiply(Matrix &l, Matrix &r);
 
         // Matrices
+        static matrix_ptr projectionMatrix(double fovy, double near, double far);
         static matrix_ptr translationMatrix(double tx, double ty, double tz);
         static matrix_ptr rotateX(double degrees);
         static matrix_ptr rotateY(double degrees);
@@ -24,6 +25,7 @@ namespace models {
 
         // Helpers
         static double degreesToRadial(double degrees);
+        static void print(const Matrix& m);
     private:
         static const int columns_;
         static const int rows_;

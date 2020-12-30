@@ -8,7 +8,7 @@ namespace objects {
     object::object(view::view& view, const models::point3d& origin)
         :   view_{view}, origin_{origin} {}
 
-    void object::transform(models::Matrix &m) {
+    void object::transform(const models::Matrix &m) {
         for (auto &line : lines_) {
             line.begin().transform(m);
             line.end().transform(m);
@@ -40,17 +40,23 @@ namespace objects {
         for (auto& line : lines_) {
             // calculate world and object origin
             double ox = worldOrigin.x() + objOrigin.x();
-            double oy = worldOrigin.y() + objOrigin.y();
+            double oy = worldOrigin.y() + (objOrigin.y() *-1); // (*-1) y should be flipped
 
             // draw around origin
             double bx = ox + line.begin().x();
-            double by = oy + line.begin().y();
+            double by = oy + (line.begin().y() *-1); // (*-1) y should be flipped
             double ex = ox + line.end().x();
-            double ey = oy + line.end().y();
+            double ey = oy + (line.end().y() *-1); // (*-1) y should be flipped
 
             view_.renderLine(bx, by, ex, ey, config::LINE_STROKE_COLOUR);
 //            view_.renderCircle(bx, by, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
 //            view_.renderCircle(ex, ey, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
+        }
+    }
+
+    void object::print() {
+        for (auto& line : lines_) {
+            line.print();
         }
     }
 }
