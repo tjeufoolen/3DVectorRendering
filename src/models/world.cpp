@@ -1,10 +1,15 @@
 #include "world.h"
 
 #include <iostream>
+#include <algorithm>
 
 namespace models {
-    world::world(view::view& view)
-        :   origin_{0,0,0}, view_{view} {}
+    world::world()
+        :   origin_{0,0,0} {}
+
+    std::vector<std::unique_ptr<objects::object>> & world::objects() {
+        return objects_;
+    }
 
     void world::addObject(std::unique_ptr<objects::object> obj) {
         objects_.emplace_back(std::move(obj));
@@ -26,17 +31,9 @@ namespace models {
         origin_.z(z);
     }
 
-    void world::draw() {
-        for (auto& obj : objects_) {
-            obj->draw(origin_);
-        }
-    }
-
     void world::print() {
-        std::cout << "==================================================" << std::endl;
-        for (auto& obj : objects_) {
-            obj->print();
-        }
-        std::cout << "==================================================" << std::endl;
+        std::cout << "====================== WORLD ======================" << "\n";
+        std::for_each(objects_.begin(), objects_.end(), [](auto& obj){ obj->print(); });
+        std::cout << "==================================================" << "\n";
     }
 }

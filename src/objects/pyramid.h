@@ -6,7 +6,7 @@
 namespace objects {
     class pyramid : public object {
     public:
-        pyramid(view::view& view, const models::point3d& origin);
+        pyramid(const models::point3d& origin);
     };
 }
 

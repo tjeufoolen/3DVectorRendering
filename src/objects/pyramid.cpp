@@ -1,8 +1,8 @@
 #include "pyramid.h"
 
 namespace objects {
-    pyramid::pyramid(view::view& view, const models::point3d& origin)
-        : object(view, origin)
+    pyramid::pyramid(const models::point3d& origin)
+        : object(origin)
     {
         //       E
         //      / \

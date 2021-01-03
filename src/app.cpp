@@ -1,32 +1,24 @@
 #include "app.h"
 
 #include "logger.h"
-#include "cube.h"
-#include "pyramid.h"
 #include "spaceship.h"
 #include "config.h"
 
 app::app()
     :   view_{"Eindopdracht Lineaire algebra - gemaakt door Stan Geitel en Tjeu Foolen.",
             config::WINDOW_WIDTH, config::WINDOW_HEIGHT, utils::colours::black, "assets/images/icon.png"},
-        world_{view_},
+        world_{},
+        camera_{view_, world_},
         keyHandler_{world_}
 {
-//    std::unique_ptr<objects::object> cube { std::make_unique<objects::cube>(view_, models::point3d{100,100,0}) };
-//    world_.addObject(std::move(cube));
-//    std::unique_ptr<objects::object> pyramid { std::make_unique<objects::pyramid>(view_, models::point3d{100,0,-100}) };
-//    world_.addObject(std::move(pyramid));
-    std::unique_ptr<objects::object> spaceship { std::make_unique<objects::spaceship>(view_, models::point3d{0,0,0}) };
+    std::unique_ptr<objects::object> spaceship { std::make_unique<objects::spaceship>(models::point3d{0,0,0}) };
     world_.addObject(std::move(spaceship));
-
-
-    // temp: temporarily for debug purposes, remove after!
-    // set world origin to center of window
-    world_.origin(static_cast<double>(config::WINDOW_WIDTH) / 2, static_cast<double>(config::WINDOW_HEIGHT) / 2, 0);
 }
 
 void app::run() {
     bool keepRunning { true };
+
+    init();
 
     while (keepRunning) {
         SDL_Event e;
@@ -49,6 +41,18 @@ void app::run() {
     view_.close();
 }
 
+void app::init() {
+    double WINDOW_CENTER_X { static_cast<double>(config::WINDOW_WIDTH)  / 2 };
+    double WINDOW_CENTER_Y { static_cast<double>(config::WINDOW_HEIGHT) / 2 };
+
+    // set world origin to center of window
+    world_.origin(WINDOW_CENTER_X, WINDOW_CENTER_Y, 0);
+
+    // initialize bird's eye view perspective with camera
+//    double distance { 500 };// distance from origin
+//    camera_.origin(WINDOW_CENTER_X + distance, WINDOW_CENTER_Y + distance, distance);
+}
+
 void app::draw() {
-    world_.draw();
+    camera_.draw();
 }

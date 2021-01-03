@@ -1,8 +1,8 @@
 #include "cube.h"
 
 namespace objects {
-    cube::cube(view::view& view, const models::point3d& origin)
-        : object(view, origin)
+    cube::cube(const models::point3d& origin)
+        : object(origin)
     {
         //     H---------G
         //    /|        /|

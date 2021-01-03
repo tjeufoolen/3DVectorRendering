@@ -6,7 +6,7 @@
 namespace objects {
     class spaceship : public object {
     public:
-        spaceship(view::view& view, const models::point3d& origin);
+        spaceship(const models::point3d& origin);
     };
 }
 

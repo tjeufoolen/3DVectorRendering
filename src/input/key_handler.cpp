@@ -13,43 +13,49 @@ namespace input {
                 world_.print();
                 break;
 
-            // rotate x
-            case SDLK_q:
-                world_.transformObjects(*std::move(models::matrix::rotateX(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
+            // camera
+            case SDLK_UP:
+                world_.transformObjects(*std::move(models::matrix::rotateX(
+                        -config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
-            case SDLK_a:
-                world_.transformObjects(*std::move(models::matrix::rotateX(config::ROTATION_DEGREES_PER_KEY_PRESS)));
+            case SDLK_DOWN:
+                world_.transformObjects(*std::move(models::matrix::rotateX(
+                        config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
-
-            // rotate y
-            case SDLK_w:
-                world_.transformObjects(*std::move(models::matrix::rotateY(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
+            case SDLK_LEFT:
+                world_.transformObjects(*std::move(models::matrix::rotateY(
+                        -config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
-            case SDLK_s:
-                world_.transformObjects(*std::move(models::matrix::rotateY(config::ROTATION_DEGREES_PER_KEY_PRESS)));
+            case SDLK_RIGHT:
+                world_.transformObjects(*std::move(models::matrix::rotateY(
+                        config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
-
-            // rotate z
-            case SDLK_e:
-                world_.transformObjects(*std::move(models::matrix::rotateZ(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
+            case SDLK_PAGEUP:
+                world_.transformObjects(*std::move(models::matrix::worldSpaceScalingMatrix(
+                        config::UP_SCALE_STEPS_PER_KEY_PRESS,
+                        config::UP_SCALE_STEPS_PER_KEY_PRESS,
+                        config::UP_SCALE_STEPS_PER_KEY_PRESS)));
                 break;
-            case SDLK_d:
-                world_.transformObjects(*std::move(models::matrix::rotateZ(config::ROTATION_DEGREES_PER_KEY_PRESS)));
+            case SDLK_PAGEDOWN:
+                world_.transformObjects(*std::move(models::matrix::worldSpaceScalingMatrix(
+                        config::DOWN_SCALE_STEPS_PER_KEY_PRESS,
+                        config::DOWN_SCALE_STEPS_PER_KEY_PRESS,
+                        config::DOWN_SCALE_STEPS_PER_KEY_PRESS)));
                 break;
 
             // move right-left-up-down
-            case SDLK_RIGHT:
-                world_.transformObjects(*std::move(models::matrix::translationMatrix(config::MOVE_STEPS_PER_KEY_PRESS,0,0)));
-                break;
-            case SDLK_LEFT:
-                world_.transformObjects(*std::move(models::matrix::translationMatrix(-config::MOVE_STEPS_PER_KEY_PRESS,0,0)));
-                break;
-            case SDLK_UP:
-                world_.transformObjects(*std::move(models::matrix::translationMatrix(0,config::MOVE_STEPS_PER_KEY_PRESS,0)));
-                break;
-            case SDLK_DOWN:
-                world_.transformObjects(*std::move(models::matrix::translationMatrix(0,-config::MOVE_STEPS_PER_KEY_PRESS,0)));
-                break;
+//            case SDLK_RIGHT:
+//                world_.transformObjects(*std::move(models::matrix::translationMatrix(config::MOVE_STEPS_PER_KEY_PRESS,0,0)));
+//                break;
+//            case SDLK_LEFT:
+//                world_.transformObjects(*std::move(models::matrix::translationMatrix(-config::MOVE_STEPS_PER_KEY_PRESS,0,0)));
+//                break;
+//            case SDLK_UP:
+//                world_.transformObjects(*std::move(models::matrix::translationMatrix(0,config::MOVE_STEPS_PER_KEY_PRESS,0)));
+//                break;
+//            case SDLK_DOWN:
+//                world_.transformObjects(*std::move(models::matrix::translationMatrix(0,-config::MOVE_STEPS_PER_KEY_PRESS,0)));
+//                break;
         }
     }
 }

@@ -21,6 +21,8 @@ namespace models {
         void w(double w);
         double w() const;
 
+        point3d operator+(const point3d& other) const;
+
         void transform(const Matrix& m);
         std::unique_ptr<point3d> getPerspectiveCoordinate(const models::Matrix& m) const;
 

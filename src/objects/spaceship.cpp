@@ -1,8 +1,8 @@
 #include "spaceship.h"
 
 namespace objects {
-    spaceship::spaceship(view::view& view, const models::point3d& origin)
-        : object(view, origin)
+    spaceship::spaceship(const models::point3d& origin)
+        : object(origin)
     {
         addLine({{78.1084,100,-100},{68.9468,116.821,-100}});
         addLine({{68.9468,116.821,-100},{72.3757,110.526,-91.9498}});
@@ -564,6 +564,5 @@ namespace objects {
         addLine({{-156.882,154.122,-149.38},{-156.882,154.122,-105.706}});
         addLine({{-156.882,154.122,-105.706},{-155.666,156.355,-149.38}});
         addLine({{-155.666,156.355,-149.38},{-156.882,154.122,-149.38}});
-
     }
 }

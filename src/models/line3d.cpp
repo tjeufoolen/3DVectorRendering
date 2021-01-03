@@ -39,6 +39,6 @@ namespace models {
     }
 
     void line3d::print() {
-        std::cout << "line: [x" << begin().x() << ",y" << begin().y() << ",z" << begin().z() << "] -> [x" << end().x() << ",y" << end().y() << ",z" << end().z() << "]" << std::endl;
+        std::cout << "line: [x" << begin().x() << ",y" << begin().y() << ",z" << begin().z() << "] -> [x" << end().x() << ",y" << end().y() << ",z" << end().z() << "]" << "\n";
     }
 }

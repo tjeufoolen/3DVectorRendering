@@ -38,6 +38,16 @@ namespace models {
         w_ = v;
     }
 
+    point3d point3d::operator+(const point3d& other) const {
+        return {
+            x_ + other.x(),
+            y_ + other.y(),
+            z_ + other.z(),
+            w_ + other.w()
+        };
+    }
+
+
     void point3d::transform(const Matrix &m) {
         // important: safe a copy of the actual values to do multiplications on
         double x = x_, y = y_, z = z_, w = w_;
