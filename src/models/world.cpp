@@ -5,7 +5,7 @@
 
 namespace models {
     world::world()
-        :   origin_{0,0,0} {}
+        :   origin_{0,0,0}, spaceship_{{0,0,0}} {}
 
     std::vector<std::unique_ptr<objects::object>> & world::objects() {
         return objects_;
@@ -19,6 +19,10 @@ namespace models {
         for (auto& object : objects_) {
             object->transform(m);
         }
+    }
+
+    objects::spaceship& world::spaceship() {
+        return spaceship_;
     }
 
     point3d world::origin() const {

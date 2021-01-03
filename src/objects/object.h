@@ -23,7 +23,7 @@ namespace objects {
 
         std::vector<models::line3d>& lines();
 
-        models::point3d origin();
+        models::point3d origin() const;
         void origin(double x, double y, double z);
 
         void print();

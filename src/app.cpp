@@ -1,7 +1,5 @@
 #include "app.h"
 
-#include "logger.h"
-#include "spaceship.h"
 #include "config.h"
 
 app::app()
@@ -11,8 +9,7 @@ app::app()
         camera_{view_, world_},
         keyHandler_{world_}
 {
-    std::unique_ptr<objects::object> spaceship { std::make_unique<objects::spaceship>(models::point3d{0,0,0}) };
-    world_.addObject(std::move(spaceship));
+
 }
 
 void app::run() {

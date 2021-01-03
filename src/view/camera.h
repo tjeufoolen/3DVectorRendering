@@ -15,6 +15,7 @@ namespace view {
         void origin(double x, double y, double z);
 
         void draw();
+        void drawObject(objects::object& obj);
     };
 }
 

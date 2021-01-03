@@ -13,26 +13,32 @@ namespace view {
     }
 
     void camera::draw() {
+        drawObject(world_.spaceship());
+
         for (auto& obj : world_.objects()) {
-            auto worldOrigin { world_.origin() };
-            auto origin { obj->origin() };
+            drawObject(*obj);
+        }
+    }
 
-            // draw lines
-            for (auto& line : obj->lines()) {
-                // calculate world and object origin
-                double ox { worldOrigin.x() + origin.x() };
-                double oy { worldOrigin.y() + (origin.y() *-1) }; // (*-1) y should be flipped
+    void camera::drawObject(objects::object& obj) {
+        auto worldOrigin { world_.origin() };
+        auto origin { obj.origin() };
 
-                // draw around origin
-                double bx { ox + line.begin().x() };
-                double by { oy + (line.begin().y() *-1) }; // (*-1) y should be flipped
-                double ex { ox + line.end().x() };
-                double ey { oy + (line.end().y() *-1) }; // (*-1) y should be flipped
+        // draw lines
+        for (auto& line : obj.lines()) {
+            // calculate world and object origin
+            double ox { worldOrigin.x() + origin.x() };
+            double oy { worldOrigin.y() + (origin.y() *-1) }; // (*-1) y should be flipped
 
-                view_.renderLine(bx, by, ex, ey, config::LINE_STROKE_COLOUR);
-                view_.renderCircle(bx, by, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
-                view_.renderCircle(ex, ey, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
-            }
+            // draw around origin
+            double bx { ox + line.begin().x() };
+            double by { oy + (line.begin().y() *-1) }; // (*-1) y should be flipped
+            double ex { ox + line.end().x() };
+            double ey { oy + (line.end().y() *-1) }; // (*-1) y should be flipped
+
+            view_.renderLine(bx, by, ex, ey, config::LINE_STROKE_COLOUR);
+            view_.renderCircle(bx, by, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
+            view_.renderCircle(ex, ey, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
         }
     }
 }

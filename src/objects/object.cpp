@@ -18,11 +18,11 @@ namespace objects {
         lines_.emplace_back(line);
     }
 
-    std::vector<models::line3d> & object::lines() {
+    std::vector<models::line3d>& object::lines() {
         return lines_;
     }
 
-    models::point3d object::origin() {
+    models::point3d object::origin() const {
         return origin_;
     }
 
