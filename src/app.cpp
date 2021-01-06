@@ -7,7 +7,7 @@ app::app()
             config::WINDOW_WIDTH, config::WINDOW_HEIGHT, utils::colours::black, "assets/images/icon.png"},
         world_{},
         camera_{view_, world_},
-        keyHandler_{world_}
+        keyHandler_{world_, camera_}
 {
 
 }
@@ -48,6 +48,7 @@ void app::init() {
     // initialize bird's eye view perspective with camera
 //    double distance { 500 };// distance from origin
 //    camera_.origin(WINDOW_CENTER_X + distance, WINDOW_CENTER_Y + distance, distance);
+    camera_.origin(0, 0, 100);
 }
 
 void app::draw() {

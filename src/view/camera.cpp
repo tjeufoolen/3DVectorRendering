@@ -12,15 +12,31 @@ namespace view {
         origin_.z(z);
     }
 
-    void camera::draw() {
-        drawObject(world_.spaceship());
+    void camera::transform(models::Matrix& m) {
+        origin_.transform(m);
+    }
 
-        for (auto& obj : world_.objects()) {
-            drawObject(*obj);
+    void camera::draw() {
+        auto m { *std::move(translationMatrix()) };
+
+        // create a copy of the object so that we can execute our draw operations on it
+        objects::object spaceship { world_.spaceship() };
+        spaceship.transform(m);
+
+        // draw spaceship
+        drawObject(spaceship);
+
+        // draw objects
+        for (auto& obj_ptr : world_.objects()) {
+            // create a copy of the object so that we can execute our draw operations on it
+            objects::object obj { *obj_ptr };
+            obj.transform(m);
+
+            drawObject(obj);
         }
 
         // draw yellow dot at world origin
-        view_.renderCircle(world_.origin().x(), world_.origin().y(), 5,utils::colours::yellow);
+        view_.renderCircle(world_.origin().x(), world_.origin().y(), 5, utils::colours::yellow);
     }
 
     void camera::drawObject(objects::object& obj) {
@@ -46,5 +62,34 @@ namespace view {
 
         // draw white dot at obj origin
         view_.renderCircle(ox, oy, 5,utils::colours::white);
+    }
+
+    models::point3d camera::direction() const {
+        const models::point3d eye { origin_ };
+        const models::point3d lookAt { 0,0, 0 };
+
+        return { eye - lookAt };
+    }
+
+    models::matrix_ptr camera::translationMatrix() {
+        // 1. Bepaal de direction-vector en normaliseer deze.
+        models::point3d direction { camera::direction() };
+        direction.normalize();
+
+        // 2. Bepaal de right-vector met het uitproduct van de up- en direction-vector, normaliseer deze vector.
+        models::point3d right { models::point3d{ 0,1,0,1 }.crossProduct(direction) };
+        right.normalize();
+
+        // 3. Bepaal de up-vector met het uitproduct van de direction- en de right-vector, normaliseer deze vector.
+        models::point3d up = direction.crossProduct(right);
+        up.normalize();
+
+        // 4. Zet ze op de juiste manier in de transformatiematrix.
+        auto translation { *std::move(models::matrix::inverseMatrix(right, up, direction)) };
+
+        // Om het geheel compleet te maken moeten we de camera natuurlijk eerst naar de oorsprong transleren
+        auto cameraToOrigin { *std::move(models::matrix::translationMatrix(-origin_.x(), -origin_.y(), -origin_.z())) };
+
+        return std::move(models::matrix::multiply(translation, cameraToOrigin));
     }
 }

@@ -4,13 +4,15 @@
 #include <algorithm>
 
 #include "cube.h"
+#include "pyramid.h"
 
 namespace models {
     world::world()
         :   origin_{0,0,0}, spaceship_{{0,100,0}}
     {
         // Add objects
-        addObject(std::make_unique<objects::cube>(point3d{0, 100, -300}));
+//        addObject(std::make_unique<objects::cube>(point3d{0, 100, -300}));
+        addObject(std::make_unique<objects::pyramid>(point3d{0, 0, 0}));
     }
 
     std::vector<std::unique_ptr<objects::object>> & world::objects() {

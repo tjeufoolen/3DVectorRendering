@@ -5,6 +5,8 @@
 #include <array>
 
 namespace models {
+    class point3d; // forward declare
+
     using Matrix = std::array<std::array<double, 4>, 4>;
     using matrix_ptr = std::unique_ptr<Matrix>;
 
@@ -22,6 +24,7 @@ namespace models {
         static matrix_ptr rotateZ(double degrees);
         static matrix_ptr localSpaceScalingMatrix(double x, double y, double z, double sx, double sy, double sz);
         static matrix_ptr worldSpaceScalingMatrix(double sx, double sy, double sz);
+        static matrix_ptr inverseMatrix(const models::point3d& right, const models::point3d& up, const models::point3d& direction);
 
         // Helpers
         static double degreesToRadial(double degrees);

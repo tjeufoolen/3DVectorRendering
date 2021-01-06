@@ -50,12 +50,29 @@ namespace models {
         return point3d{x, y, z};
     }
 
+    void point3d::normalize() {
+        double length = sqrt(x_*x_ + y_*y_ + z_*z_);
+
+        x(x_ / length);
+        y(y_ / length);
+        z(z_ / length);
+    }
+
     point3d point3d::operator+(const point3d& other) const {
         return {
             x_ + other.x(),
             y_ + other.y(),
             z_ + other.z(),
             w_ + other.w()
+        };
+    }
+
+    point3d point3d::operator-(const point3d& other) const {
+        return {
+            x_ - other.x(),
+            y_ - other.y(),
+            z_ - other.z(),
+            w_ - other.w()
         };
     }
 

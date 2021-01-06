@@ -24,10 +24,13 @@ namespace models {
         double dotProduct(const point3d& other) const;
         point3d crossProduct(const point3d& other) const;
 
+        void normalize();
+
         point3d operator+(const point3d& other) const;
+        point3d operator-(const point3d& other) const;
 
         void transform(const Matrix& m);
-        std::unique_ptr<point3d> getPerspectiveCoordinate(const models::Matrix& m) const;
+        std::unique_ptr<point3d> getPerspectiveCoordinate(const Matrix& m) const;
 
         void print() const;
     };
