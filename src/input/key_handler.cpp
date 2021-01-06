@@ -17,17 +17,25 @@ namespace input {
             case SDLK_UP:
                 world_.transformObjects(*std::move(models::matrix::rotateX(
                         -config::ROTATION_DEGREES_PER_KEY_PRESS)));
+                world_.spaceship().transform(*std::move(models::matrix::rotateX(
+                        -config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
             case SDLK_DOWN:
                 world_.transformObjects(*std::move(models::matrix::rotateX(
+                        config::ROTATION_DEGREES_PER_KEY_PRESS)));
+                world_.spaceship().transform(*std::move(models::matrix::rotateX(
                         config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
             case SDLK_LEFT:
                 world_.transformObjects(*std::move(models::matrix::rotateY(
                         -config::ROTATION_DEGREES_PER_KEY_PRESS)));
+                world_.spaceship().transform(*std::move(models::matrix::rotateY(
+                        -config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
             case SDLK_RIGHT:
                 world_.transformObjects(*std::move(models::matrix::rotateY(
+                        config::ROTATION_DEGREES_PER_KEY_PRESS)));
+                world_.spaceship().transform(*std::move(models::matrix::rotateY(
                         config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
             case SDLK_PAGEUP:
