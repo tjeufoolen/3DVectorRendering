@@ -3,8 +3,8 @@
 #include <iostream>
 
 namespace models {
-    line3d::line3d(const point3d &begin, const point3d &end)
-        : begin_{begin}, end_{end} {}
+    line3d::line3d(const point3d &begin, const point3d &end, const utils::colour& colour)
+        : begin_{begin}, end_{end}, colour_{colour} {}
 
     point3d& line3d::begin() {
         return begin_;
@@ -44,6 +44,10 @@ namespace models {
         auto endZ = end_.z() - obj.end_.z();
 
         return line3d{point3d{startX, startY, startZ}, point3d{endX, endY, endZ}};
+    }
+
+    utils::colour & line3d::colour() {
+        return colour_;
     }
 
     void line3d::print() {

@@ -31,6 +31,7 @@ namespace utils {
         colour const purple = { 127, 0, 255, 255 };
         colour const pink = { 255, 0, 127, 255 };
         colour const cyan = { 0, 255, 255, 255 };
+        colour const grey = { 105, 105, 105, 255 };
     }
 }
 

@@ -43,15 +43,17 @@ namespace view {
 
         // draw yellow dot at world origin
         view_.renderCircle(world_.origin().x(), world_.origin().y(), 5, utils::colours::yellow);
+//        view_.renderCircle(origin().x() + world_.origin().x(), origin().y() + world_.origin().y(), 5, utils::colours::yellow);
     }
 
     void camera::drawObject(objects::object& obj) {
-        const auto& worldOrigin { world_.origin() };
+        const auto& origin { world_.origin() };
+//        const auto& origin { camera::origin() };
         const auto& objOrigin { obj.origin() };
 
         // calculate world and object origin
-        double ox { worldOrigin.x() + objOrigin.x() };
-        double oy { worldOrigin.y() + objOrigin.y() * -1 };
+        double ox { origin.x() + objOrigin.x() };
+        double oy { origin.y() + objOrigin.y() * -1 };
 
         // draw lines
         for (auto& line : obj.lines()) {
@@ -61,7 +63,7 @@ namespace view {
             double ex { ox + line.end().x() };
             double ey { oy + line.end().y() * -1 };
 
-            view_.renderLine(bx, by, ex, ey, config::LINE_STROKE_COLOUR);
+            view_.renderLine(bx, by, ex, ey, line.colour());
             view_.renderCircle(bx, by, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
             view_.renderCircle(ex, ey, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
         }

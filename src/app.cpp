@@ -44,10 +44,12 @@ void app::init() {
 
     // set world origin to center of window
     world_.origin(WINDOW_CENTER_X, WINDOW_CENTER_Y, 0);
+//    world_.origin(0,0,0);
 
     // initialize bird's eye view perspective with camera
     camera_.origin(0, 0, 100);
 //    camera_.origin(-100, -100, 100);
+//    camera_.origin(WINDOW_CENTER_X, WINDOW_CENTER_Y, 100);
 }
 
 void app::draw() {

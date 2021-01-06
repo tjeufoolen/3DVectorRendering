@@ -5,8 +5,8 @@
 
 namespace config {
     static double POINT_DIAMETER { 2 };
-    static utils::colour POINT_FILL_COLOUR { utils::colours::purple };
-    static utils::colour LINE_STROKE_COLOUR { utils::colours::purple };
+    static utils::colour POINT_FILL_COLOUR { utils::colours::grey };
+    static utils::colour LINE_STROKE_COLOUR { utils::colours::grey };
 
     static int WINDOW_WIDTH { 1080 };
     static int WINDOW_HEIGHT { 720 };
