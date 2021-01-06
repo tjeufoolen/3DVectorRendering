@@ -26,6 +26,8 @@ namespace objects {
         models::point3d origin() const;
         void origin(double x, double y, double z);
 
+        models::point3d centrum() const;
+
         void print();
     protected:
         void addLine(models::line3d line);

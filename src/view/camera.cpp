@@ -12,6 +12,10 @@ namespace view {
         origin_.z(z);
     }
 
+    models::point3d & camera::origin() {
+        return origin_;
+    }
+
     void camera::transform(models::Matrix& m) {
         origin_.transform(m);
     }

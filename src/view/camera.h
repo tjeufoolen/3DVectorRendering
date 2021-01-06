@@ -15,6 +15,7 @@ namespace view {
         void transform(models::Matrix& m);
 
         void origin(double x, double y, double z);
+        models::point3d& origin();
 
         void draw();
         void drawObject(objects::object& obj);

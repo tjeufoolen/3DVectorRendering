@@ -8,11 +8,10 @@
 
 namespace models {
     world::world()
-        :   origin_{0,0,0}, spaceship_{{0,100,0}}
+        :   origin_{0,0,0}, spaceship_{{0,50,0}}
     {
         // Add objects
-//        addObject(std::make_unique<objects::cube>(point3d{0, 100, -300}));
-        addObject(std::make_unique<objects::pyramid>(point3d{0, 0, 0}));
+        addObject(std::make_unique<objects::pyramid>(point3d{100, -100, -300}));
     }
 
     std::vector<std::unique_ptr<objects::object>> & world::objects() {
@@ -26,6 +25,20 @@ namespace models {
     void world::transformObjects(const models::Matrix &m) {
         for (auto& object : objects_) {
             object->transform(m);
+        }
+    }
+
+    void world::scale(double scale) {
+        spaceship_.transform(*std::move(models::matrix::localSpaceScalingMatrix(
+            spaceship_.centrum().x(), spaceship_.centrum().y(), spaceship_.centrum().z(),
+            scale, scale, scale
+        )));
+
+        for (auto& object : objects_) {
+            object->transform(*std::move(models::matrix::localSpaceScalingMatrix(
+                object->centrum().x(), object->centrum().y(), object->centrum().z(),
+                scale, scale, scale
+            )));
         }
     }
 

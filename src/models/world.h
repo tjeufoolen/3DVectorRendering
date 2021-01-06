@@ -22,6 +22,8 @@ namespace models {
         void addObject(std::unique_ptr<objects::object> obj);
         void transformObjects(const models::Matrix& m);
 
+        void scale(double scale);
+
         objects::spaceship& spaceship();
 
         point3d origin() const;

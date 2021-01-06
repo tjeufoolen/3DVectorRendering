@@ -14,6 +14,14 @@ namespace models {
         return end_;
     }
 
+    point3d line3d::begin() const {
+        return begin_;
+    }
+
+    point3d line3d::end() const {
+        return end_;
+    }
+
     line3d line3d::operator +(const line3d& obj) const {
         auto startX = begin_.x() + obj.begin_.x();
         auto startY = begin_.y() + obj.begin_.y();
