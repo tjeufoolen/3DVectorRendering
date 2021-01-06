@@ -21,6 +21,9 @@ namespace models {
         void w(double w);
         double w() const;
 
+        double dotProduct(const point3d& other) const;
+        point3d crossProduct(const point3d& other) const;
+
         point3d operator+(const point3d& other) const;
 
         void transform(const Matrix& m);

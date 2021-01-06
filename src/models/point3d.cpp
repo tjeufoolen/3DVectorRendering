@@ -38,6 +38,18 @@ namespace models {
         w_ = v;
     }
 
+    double point3d::dotProduct(const point3d &other) const {
+        return x_ * other.x() + y_ * other.y() + z_ * other.z();
+    }
+
+    point3d point3d::crossProduct(const point3d &other) const {
+        double x = y_ * other.z() - z_ * other.y();
+        double y = z_ * other.x() - x_ * other.z();
+        double z = x_ * other.y() - y_ * other.x();
+
+        return point3d{x, y, z};
+    }
+
     point3d point3d::operator+(const point3d& other) const {
         return {
             x_ + other.x(),
@@ -46,7 +58,6 @@ namespace models {
             w_ + other.w()
         };
     }
-
 
     void point3d::transform(const Matrix &m) {
         // important: safe a copy of the actual values to do multiplications on
