@@ -10,7 +10,7 @@ namespace models {
         :   origin_{0,0,0}, spaceship_{{0,50,0}}
     {
         // Add objects
-        addObject(std::make_unique<objects::pyramid>(point3d{100, -100, -300}));
+        addObject(std::make_unique<objects::pyramid>(point3d{0, 0, -500}));
     }
 
     std::vector<std::unique_ptr<objects::object>> & world::objects() {

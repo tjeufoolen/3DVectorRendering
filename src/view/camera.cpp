@@ -32,6 +32,8 @@ namespace view {
 
         // draw objects
         for (auto& obj_ptr : world_.objects()) {
+            obj_ptr->animate();
+
             // create a copy of the object so that we can execute our draw operations on it
             objects::object obj { *obj_ptr };
             obj.transform(m);
@@ -65,7 +67,7 @@ namespace view {
         }
 
         // draw white dot at obj origin
-        view_.renderCircle(ox, oy, 5,utils::colours::white);
+        view_.renderCircle(ox, oy, 5, utils::colours::white);
     }
 
     models::point3d camera::direction() const {

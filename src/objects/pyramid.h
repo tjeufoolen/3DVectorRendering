@@ -5,8 +5,14 @@
 
 namespace objects {
     class pyramid : public object {
+        double scale_;
+        double scaleFactor_;
+        double maxScale_;
+        double minScale_;
     public:
         pyramid(const models::point3d& origin);
+
+        void animate() override;
     };
 }
 

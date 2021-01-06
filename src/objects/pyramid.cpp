@@ -2,7 +2,8 @@
 
 namespace objects {
     pyramid::pyramid(const models::point3d& origin)
-        : object(origin)
+        :   object(origin),
+            scale_{1}, scaleFactor_{1.01}, maxScale_{2}, minScale_{1}
     {
         //       E
         //      / \
@@ -26,5 +27,20 @@ namespace objects {
         addLine({b,e});
         addLine({c,e});
         addLine({d,e});
+    }
+
+    void pyramid::animate()
+    {
+        scale_ *= scaleFactor_;
+
+        if (scale_ >= maxScale_) {
+            scaleFactor_ = 0.99;
+        } else if ( scale_ <= minScale_) {
+            scaleFactor_ = 1.01;
+        }
+
+        transform(*std::move(models::matrix::worldSpaceScalingMatrix(
+            scaleFactor_, scaleFactor_, scaleFactor_
+        )));
     }
 }

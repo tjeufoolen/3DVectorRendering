@@ -28,6 +28,8 @@ namespace objects {
 
         models::point3d centrum() const;
 
+        virtual void animate() {};
+
         void print();
     protected:
         void addLine(models::line3d line);
