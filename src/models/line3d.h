@@ -11,9 +11,9 @@ namespace models {
         line3d(const point3d& begin, const point3d& end);
 
         point3d& begin();
-        point3d& end();
-
         point3d begin() const;
+
+        point3d& end();
         point3d end() const;
 
         template<typename T>

@@ -86,12 +86,6 @@ namespace models {
         w_ = m[3][0] * x + m[3][1] * y + m[3][2] * z + m[3][3] * w;
     }
 
-    std::unique_ptr<point3d> point3d::getPerspectiveCoordinate(const models::Matrix& m) const {
-        point3d point{x_, y_, z_};
-        point.transform(m);
-        return std::make_unique<point3d>(point);
-    }
-
     void point3d::print() const {
         std::cout << "[point]: x" << x_ << ", y" << y_ << ", z" << z_ << ", w" << w_ << "\n";
     }

@@ -3,7 +3,6 @@
 #include <iostream>
 #include <algorithm>
 
-#include "cube.h"
 #include "pyramid.h"
 
 namespace models {

@@ -30,7 +30,6 @@ namespace models {
         point3d operator-(const point3d& other) const;
 
         void transform(const Matrix& m);
-        std::unique_ptr<point3d> getPerspectiveCoordinate(const Matrix& m) const;
 
         void print() const;
     };

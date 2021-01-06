@@ -10,12 +10,12 @@ namespace models {
         return begin_;
     }
 
-    point3d& line3d::end() {
-        return end_;
-    }
-
     point3d line3d::begin() const {
         return begin_;
+    }
+
+    point3d& line3d::end() {
+        return end_;
     }
 
     point3d line3d::end() const {
