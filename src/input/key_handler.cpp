@@ -13,23 +13,21 @@ namespace input {
                 world_.print();
                 break;
 
-            // camera
+            // camera position
             case SDLK_RIGHT:
                 camera_.origin().transform(*std::move(models::matrix::rotateY(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
-
             case SDLK_LEFT:
                 camera_.origin().transform(*std::move(models::matrix::rotateY(config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
-
             case SDLK_UP:
                 camera_.origin().transform(*std::move(models::matrix::rotateX(config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
-
             case SDLK_DOWN:
                 camera_.origin().transform(*std::move(models::matrix::rotateX(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
 
+            // world scaling // todo: keys should be replaced by zoom functionality (perspective)
             case SDLK_PAGEUP:
                 world_.scale(config::UP_SCALE_STEPS_PER_KEY_PRESS);
                 break;
