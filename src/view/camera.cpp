@@ -42,20 +42,19 @@ namespace view {
     }
 
     void camera::drawObject(objects::object& obj) {
-        const auto& origin { camera::origin() };
-        const auto& objOrigin { obj.origin() };
+        const auto& co { camera::origin() };
+        const auto& wo { world_.origin() };
+        const auto& oo { obj.origin() };
 
-        // calculate world and object origin
-        double ox { origin.x() + objOrigin.x() };
-        double oy { origin.y() + objOrigin.y() * -1 };
+        const auto origin { co + wo + oo };
 
         // draw lines
         for (auto& line : obj.lines()) {
             // draw around origin
-            double bx { ox + line.begin().x() };
-            double by { oy + line.begin().y() * -1 };
-            double ex { ox + line.end().x() };
-            double ey { oy + line.end().y() * -1 };
+            double bx { origin.x() + line.begin().x() };
+            double by { origin.y() + line.begin().y() * -1 };
+            double ex { origin.x() + line.end().x() };
+            double ey { origin.y() + line.end().y() * -1 };
 
             // add screen center
             bx += config::WINDOW_WIDTH  / 2.0;

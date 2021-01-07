@@ -1,5 +1,6 @@
 #include "app.h"
 
+#include "cube.h"
 #include "pyramid.h"
 #include "config.h"
 
@@ -44,7 +45,9 @@ void app::init() {
     world_.addObject(std::make_unique<objects::object>(models::point3d{0,0,0}));
 
     // planets/asteroids
+    world_.addObject(std::make_unique<objects::cube>(models::point3d{-300, 50, -750}));
     world_.addObject(std::make_unique<objects::pyramid>(models::point3d{0, 50, -500}));
+    world_.addObject(std::make_unique<objects::cube>(models::point3d{300, 50, -750}));
 }
 
 void app::draw() {
