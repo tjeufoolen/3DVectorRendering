@@ -27,7 +27,7 @@ namespace input {
                 camera_.origin().transform(*std::move(models::matrix::rotateX(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
 
-            // world scaling // todo: keys should be replaced by zoom functionality (perspective)
+            // world scaling // todo (nice-to-have): keys should be replaced by zoom functionality (perspective)
             case SDLK_PAGEUP:
                 world_.scale(config::UP_SCALE_STEPS_PER_KEY_PRESS);
                 break;

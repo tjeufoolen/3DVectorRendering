@@ -10,11 +10,11 @@ namespace utils {
         uint8_t b;
         uint8_t a;
 
-        bool const operator==(colour const& other) const
+        bool operator==(colour const& other) const
         {
             return r == other.r && g == other.g && b == other.b && a == other.a;
         }
-        bool const operator!=(colour const& other) const
+        bool operator!=(colour const& other) const
         {
             return r != other.r && g != other.g && b != other.b && a != other.a;
         }

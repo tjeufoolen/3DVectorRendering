@@ -3,7 +3,6 @@ target_sources(${PROJECT_NAME} PRIVATE
     "${CMAKE_CURRENT_LIST_DIR}/app.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/view/view.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/view/camera.cpp"
-    "${CMAKE_CURRENT_LIST_DIR}/utils/logger.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/objects/object.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/objects/cube.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/objects/pyramid.cpp"

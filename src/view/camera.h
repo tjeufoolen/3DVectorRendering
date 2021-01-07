@@ -16,10 +16,10 @@ namespace view {
         models::point3d& origin();
 
         void draw();
-        void drawObject(objects::object& obj);
     private:
-        models::point3d direction() const;
+        void drawObject(objects::object& obj);
 
+        models::point3d direction() const;
         models::matrix_ptr translationMatrix();
     };
 }

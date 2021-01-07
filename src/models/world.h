@@ -12,7 +12,7 @@
 
 namespace models {
     class world {
-        point3d origin_ = {0, 0, 0};
+        point3d origin_;
         std::vector<std::unique_ptr<objects::object>> objects_;
         objects::spaceship spaceship_;
     public:

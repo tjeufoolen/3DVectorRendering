@@ -14,7 +14,6 @@ namespace models {
 namespace objects {
     class object {
         std::vector<models::line3d> lines_;
-
         models::point3d origin_;
     public:
         object(const models::point3d& origin = {0, 0, 0});
@@ -23,9 +22,9 @@ namespace objects {
 
         std::vector<models::line3d>& lines();
 
+        void origin(double x, double y, double z);
         models::point3d origin() const;
         models::point3d& origin();
-        void origin(double x, double y, double z);
 
         models::point3d centrum() const;
 

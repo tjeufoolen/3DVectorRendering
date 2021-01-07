@@ -15,21 +15,17 @@ app::app()
 }
 
 void app::run() {
-    bool keepRunning { true };
-
     init();
 
+    bool keepRunning { true };
     while (keepRunning) {
         SDL_Event e;
 
         while (SDL_PollEvent(&e) != 0) {
-            if (e.type == SDL_KEYDOWN) {
+            if (e.type == SDL_KEYDOWN)
                 keyHandler_.handle(e.key);
-            }
-
-            if (e.type == SDL_QUIT) {
+            if (e.type == SDL_QUIT)
                 keepRunning = false;
-            }
         }
 
         view_.clear();
@@ -41,7 +37,7 @@ void app::run() {
 }
 
 void app::init() {
-    // basic object for world coordinates axis
+    // basic object to display world coordinate system axis (placed directly on origin inside the world)
     world_.addObject(std::make_unique<objects::object>(models::point3d{0,0,0}));
 
     // planets/asteroids

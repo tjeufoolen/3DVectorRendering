@@ -28,6 +28,12 @@ namespace objects {
         return lines_;
     }
 
+    void object::origin(double x, double y, double z) {
+        origin_.x(x);
+        origin_.y(y);
+        origin_.z(z);
+    }
+
     models::point3d object::origin() const {
         return origin_;
     }
@@ -54,12 +60,6 @@ namespace objects {
             yTotal / points,
             zTotal / points
         };
-    }
-
-    void object::origin(double x, double y, double z) {
-        origin_.x(x);
-        origin_.y(y);
-        origin_.z(z);
     }
 
     void object::print() {
