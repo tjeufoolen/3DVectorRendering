@@ -12,7 +12,7 @@ namespace config {
     static int WINDOW_HEIGHT { 720 };
 
     static int ROTATION_DEGREES_PER_KEY_PRESS { 2 };
-    static int MOVE_STEPS_PER_KEY_PRESS { 1 };
+    static int MOVE_STEPS_PER_KEY_PRESS { 5 };
     static double UP_SCALE_STEPS_PER_KEY_PRESS { 1.5 };
     static double DOWN_SCALE_STEPS_PER_KEY_PRESS { .5 };
 
