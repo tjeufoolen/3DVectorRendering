@@ -28,6 +28,7 @@ namespace models {
 
         point3d operator+(const point3d& other) const;
         point3d operator-(const point3d& other) const;
+        bool operator==(const point3d &rhs) const;
 
         void transform(const Matrix& m);
 

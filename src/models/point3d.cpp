@@ -62,8 +62,7 @@ namespace models {
         return {
             x_ + other.x(),
             y_ + other.y(),
-            z_ + other.z(),
-            w_ + other.w()
+            z_ + other.z()
         };
     }
 
@@ -71,9 +70,12 @@ namespace models {
         return {
             x_ - other.x(),
             y_ - other.y(),
-            z_ - other.z(),
-            w_ - other.w()
+            z_ - other.z()
         };
+    }
+
+    bool point3d::operator==(const point3d &rhs) const {
+        return x_ == rhs.x() && y_ == rhs.y() && z_ == rhs.z() && w_ == rhs.w();
     }
 
     void point3d::transform(const Matrix &m) {
