@@ -39,7 +39,6 @@ namespace view {
     }
 
     void camera::drawObject(objects::object& obj) {
-//        const auto& origin { world_.origin() };
         const auto& origin { camera::origin() };
         const auto& objOrigin { obj.origin() };
 
@@ -75,22 +74,20 @@ namespace view {
     }
 
     models::matrix_ptr camera::translationMatrix() {
-        // 1. Bepaal de direction-vector en normaliseer deze.
+        // 1. Calculate direction vector and normalize
         models::point3d direction { camera::direction() };
         direction.normalize();
 
-        // 2. Bepaal de right-vector met het uitproduct van de up- en direction-vector, normaliseer deze vector.
+        // 2. Calculate right vector with cross product from up- and direction-vector, normalize after
         models::point3d right { models::point3d{ 0,1,0,1 }.crossProduct(direction) };
         right.normalize();
 
-        // 3. Bepaal de up-vector met het uitproduct van de direction- en de right-vector, normaliseer deze vector.
+        // 3. Calculate up vector with cross product from direction- and right- vector, normalize after
         models::point3d up = direction.crossProduct(right);
         up.normalize();
 
-        // 4. Zet ze op de juiste manier in de transformatiematrix.
+        // 4. Combine matrices and return
         auto translation { *std::move(models::matrix::inverseMatrix(right, up, direction)) };
-
-        // Om het geheel compleet te maken moeten we de camera natuurlijk eerst naar de oorsprong transleren
         auto cameraToOrigin { *std::move(models::matrix::translationMatrix(-origin_.x(), -origin_.y(), -origin_.z())) };
 
         return std::move(models::matrix::multiply(translation, cameraToOrigin));
