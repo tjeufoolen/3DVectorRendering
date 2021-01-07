@@ -28,7 +28,7 @@ namespace objects {
 
         models::point3d centrum() const;
 
-        virtual void animate() {};
+        virtual void animate() {}; // runs every game loop
 
         void print();
     protected:

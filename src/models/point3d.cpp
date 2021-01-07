@@ -77,7 +77,7 @@ namespace models {
     }
 
     void point3d::transform(const Matrix &m) {
-        // important: safe a copy of the actual values to do multiplications on
+        // disclaimer: safe a copy of the actual values to do multiplications on
         double x = x_, y = y_, z = z_, w = w_;
 
         x_ = m[0][0] * x + m[0][1] * y + m[0][2] * z + m[0][3] * w;

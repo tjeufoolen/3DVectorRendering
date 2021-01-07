@@ -24,7 +24,7 @@ namespace models {
         }
     }
 
-    void world::scale(double scale) {
+    void world::scale(double scale) { //todo: test which scaling matrix to use
 //        spaceship_.transform(*std::move(models::matrix::localSpaceScalingMatrix(
 //            spaceship_.centrum().x(), spaceship_.centrum().y(), spaceship_.centrum().z(),
 //            scale, scale, scale
