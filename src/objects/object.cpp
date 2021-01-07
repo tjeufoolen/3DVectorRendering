@@ -32,6 +32,10 @@ namespace objects {
         return origin_;
     }
 
+    models::point3d& object::origin() {
+        return origin_;
+    }
+
     models::point3d object::centrum() const {
         double xTotal{0}, yTotal{0}, zTotal{0};
         auto points { lines_.size() * 2 }; // every line has 2 points

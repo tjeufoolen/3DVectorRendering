@@ -21,6 +21,9 @@ namespace view {
 
         // create a copy of the object so that we can execute our draw operations on it
         objects::object spaceship { world_.spaceship() };
+
+        spaceship.origin().print();
+
         spaceship.transform(m);
 
         // draw spaceship

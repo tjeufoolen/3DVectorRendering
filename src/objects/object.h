@@ -24,6 +24,7 @@ namespace objects {
         std::vector<models::line3d>& lines();
 
         models::point3d origin() const;
+        models::point3d& origin();
         void origin(double x, double y, double z);
 
         models::point3d centrum() const;
