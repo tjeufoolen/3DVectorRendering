@@ -3,14 +3,11 @@
 #include <iostream>
 #include <algorithm>
 
-#include "pyramid.h"
-
 namespace models {
-    world::world()
-        :   origin_{0,0,0}, spaceship_{{0,50,0}}
+    world::world(const models::point3d& origin, const objects::spaceship& spaceship)
+        :   origin_{origin}, spaceship_{spaceship}
     {
-        // Add objects
-        addObject(std::make_unique<objects::pyramid>(point3d{0, 0, -500}));
+
     }
 
     std::vector<std::unique_ptr<objects::object>> & world::objects() {
@@ -28,14 +25,20 @@ namespace models {
     }
 
     void world::scale(double scale) {
-        spaceship_.transform(*std::move(models::matrix::localSpaceScalingMatrix(
-            spaceship_.centrum().x(), spaceship_.centrum().y(), spaceship_.centrum().z(),
+//        spaceship_.transform(*std::move(models::matrix::localSpaceScalingMatrix(
+//            spaceship_.centrum().x(), spaceship_.centrum().y(), spaceship_.centrum().z(),
+//            scale, scale, scale
+//        )));
+        spaceship_.transform(*std::move(models::matrix::worldSpaceScalingMatrix(
             scale, scale, scale
         )));
 
         for (auto& object : objects_) {
-            object->transform(*std::move(models::matrix::localSpaceScalingMatrix(
-                object->centrum().x(), object->centrum().y(), object->centrum().z(),
+//            object->transform(*std::move(models::matrix::localSpaceScalingMatrix(
+//                object->centrum().x(), object->centrum().y(), object->centrum().z(),
+//                scale, scale, scale
+//            )));
+            object->transform(*std::move(models::matrix::worldSpaceScalingMatrix(
                 scale, scale, scale
             )));
         }

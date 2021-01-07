@@ -16,7 +16,7 @@ namespace models {
         std::vector<std::unique_ptr<objects::object>> objects_;
         objects::spaceship spaceship_;
     public:
-        world();
+        world(const models::point3d& origin = {0,0,0}, const objects::spaceship& spaceship = {{0,0,0}});
 
         std::vector<std::unique_ptr<objects::object>>& objects();
         void addObject(std::unique_ptr<objects::object> obj);

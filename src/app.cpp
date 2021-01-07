@@ -1,12 +1,13 @@
 #include "app.h"
 
+#include "pyramid.h"
 #include "config.h"
 
 app::app()
     :   view_{"Eindopdracht Lineaire algebra - gemaakt door Stan Geitel en Tjeu Foolen.",
             config::WINDOW_WIDTH, config::WINDOW_HEIGHT, utils::colours::black, "assets/images/icon.png"},
-        world_{},
-        camera_{view_, world_},
+        world_{{0,0,0}, objects::spaceship{{0,50,0}}},
+        camera_{view_, world_, {0, 0, 100}},
         keyHandler_{world_, camera_}
 {
 
@@ -39,17 +40,11 @@ void app::run() {
 }
 
 void app::init() {
-    double WINDOW_CENTER_X { static_cast<double>(config::WINDOW_WIDTH)  / 2 };
-    double WINDOW_CENTER_Y { static_cast<double>(config::WINDOW_HEIGHT) / 2 };
+    // basic object for world coordinates axis
+    world_.addObject(std::make_unique<objects::object>(models::point3d{0,0,0}));
 
-    // set world origin to center of window
-    world_.origin(WINDOW_CENTER_X, WINDOW_CENTER_Y, 0);
-//    world_.origin(0,0,0);
-
-    // initialize bird's eye view perspective with camera
-    camera_.origin(0, 0, 100);
-//    camera_.origin(-100, -100, 100);
-//    camera_.origin(WINDOW_CENTER_X, WINDOW_CENTER_Y, 100);
+    // planets/asteroids
+    world_.addObject(std::make_unique<objects::pyramid>(models::point3d{0, 50, -500}));
 }
 
 void app::draw() {

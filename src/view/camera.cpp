@@ -16,10 +16,6 @@ namespace view {
         return origin_;
     }
 
-    void camera::transform(models::Matrix& m) {
-        origin_.transform(m);
-    }
-
     void camera::draw() {
         auto m { *std::move(translationMatrix()) };
 
@@ -40,15 +36,11 @@ namespace view {
 
             drawObject(obj);
         }
-
-        // draw yellow dot at world origin
-        view_.renderCircle(world_.origin().x(), world_.origin().y(), 5, utils::colours::yellow);
-//        view_.renderCircle(origin().x() + world_.origin().x(), origin().y() + world_.origin().y(), 5, utils::colours::yellow);
     }
 
     void camera::drawObject(objects::object& obj) {
-        const auto& origin { world_.origin() };
-//        const auto& origin { camera::origin() };
+//        const auto& origin { world_.origin() };
+        const auto& origin { camera::origin() };
         const auto& objOrigin { obj.origin() };
 
         // calculate world and object origin
@@ -63,13 +55,16 @@ namespace view {
             double ex { ox + line.end().x() };
             double ey { oy + line.end().y() * -1 };
 
+            // add screen center
+            bx += config::WINDOW_WIDTH  / 2.0;
+            by += config::WINDOW_HEIGHT / 2.0;
+            ex += config::WINDOW_WIDTH / 2.0;
+            ey += config::WINDOW_HEIGHT / 2.0;
+
             view_.renderLine(bx, by, ex, ey, line.colour());
             view_.renderCircle(bx, by, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
             view_.renderCircle(ex, ey, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
         }
-
-        // draw white dot at obj origin
-        view_.renderCircle(ox, oy, 5, utils::colours::white);
     }
 
     models::point3d camera::direction() const {

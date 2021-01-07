@@ -15,42 +15,26 @@ namespace input {
 
             // camera
             case SDLK_RIGHT:
-                camera_.transform(*std::move(models::matrix::rotateY(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
+                camera_.origin().transform(*std::move(models::matrix::rotateY(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
 
             case SDLK_LEFT:
-                camera_.transform(*std::move(models::matrix::rotateY(config::ROTATION_DEGREES_PER_KEY_PRESS)));
+                camera_.origin().transform(*std::move(models::matrix::rotateY(config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
 
             case SDLK_UP:
-                camera_.transform(*std::move(models::matrix::rotateX(config::ROTATION_DEGREES_PER_KEY_PRESS)));
+                camera_.origin().transform(*std::move(models::matrix::rotateX(config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
 
             case SDLK_DOWN:
-                camera_.transform(*std::move(models::matrix::rotateX(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
+                camera_.origin().transform(*std::move(models::matrix::rotateX(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
 
             case SDLK_PAGEUP:
-//                world_.scale(config::UP_SCALE_STEPS_PER_KEY_PRESS);
-                world_.transformObjects(*std::move(models::matrix::worldSpaceScalingMatrix(
-                        config::UP_SCALE_STEPS_PER_KEY_PRESS,
-                        config::UP_SCALE_STEPS_PER_KEY_PRESS,
-                        config::UP_SCALE_STEPS_PER_KEY_PRESS)));
-                world_.spaceship().transform(*std::move(models::matrix::worldSpaceScalingMatrix(
-                        config::UP_SCALE_STEPS_PER_KEY_PRESS,
-                        config::UP_SCALE_STEPS_PER_KEY_PRESS,
-                        config::UP_SCALE_STEPS_PER_KEY_PRESS)));
+                world_.scale(config::UP_SCALE_STEPS_PER_KEY_PRESS);
                 break;
             case SDLK_PAGEDOWN:
-//                world_.scale(config::DOWN_SCALE_STEPS_PER_KEY_PRESS);
-                world_.transformObjects(*std::move(models::matrix::worldSpaceScalingMatrix(
-                        config::DOWN_SCALE_STEPS_PER_KEY_PRESS,
-                        config::DOWN_SCALE_STEPS_PER_KEY_PRESS,
-                        config::DOWN_SCALE_STEPS_PER_KEY_PRESS)));
-                world_.spaceship().transform(*std::move(models::matrix::worldSpaceScalingMatrix(
-                        config::DOWN_SCALE_STEPS_PER_KEY_PRESS,
-                        config::DOWN_SCALE_STEPS_PER_KEY_PRESS,
-                        config::DOWN_SCALE_STEPS_PER_KEY_PRESS)));
+                world_.scale(config::DOWN_SCALE_STEPS_PER_KEY_PRESS);
                 break;
 
             // spaceship
