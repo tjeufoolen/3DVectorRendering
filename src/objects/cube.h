@@ -6,7 +6,7 @@
 namespace objects {
     class cube : public object {
     public:
-        cube(view::view& view, const models::point3d& origin);
+        cube(const models::point3d& origin);
     };
 }
 

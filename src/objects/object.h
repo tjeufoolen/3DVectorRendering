@@ -16,18 +16,21 @@ namespace objects {
         std::vector<models::line3d> lines_;
 
         models::point3d origin_;
-        view::view& view_;
     public:
-        object(view::view& view, const models::point3d& origin = {0, 0, 0});
+        object(const models::point3d& origin = {0, 0, 0});
 
-        void transform(models::Matrix& m);
+        void transform(const models::Matrix& m);
 
         std::vector<models::line3d>& lines();
 
-        models::point3d origin();
+        models::point3d origin() const;
         void origin(double x, double y, double z);
 
-        void draw(const models::point3d& worldOrigin);
+        models::point3d centrum() const;
+
+        virtual void animate() {}; // runs every game loop
+
+        void print();
     protected:
         void addLine(models::line3d line);
     };

@@ -19,6 +19,7 @@ namespace view {
 
         window_ptr window_;
         renderer_ptr renderer_;
+        bool debug_{false};
     public:
         view(const std::string &title, int width, int height, const utils::colour& bgColour, const std::string& iconPath);
 
@@ -26,6 +27,7 @@ namespace view {
         void clear();
         void render();
         void close();
+        void debug(bool show);
 
         void renderRectangle(double x, double y, double width, double height, const utils::colour& colour, bool fill);
         void renderLine(double beginX, double beginY, double endX, double endY, const utils::colour& colour);

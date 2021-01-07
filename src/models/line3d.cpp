@@ -1,14 +1,24 @@
 #include "line3d.h"
 
-namespace models {
-    line3d::line3d(const point3d &begin, const point3d &end)
-        : begin_{begin}, end_{end} {}
+#include <iostream>
 
-    point3d & line3d::begin() {
+namespace models {
+    line3d::line3d(const point3d &begin, const point3d &end, const utils::colour& colour)
+        : begin_{begin}, end_{end}, colour_{colour} {}
+
+    point3d& line3d::begin() {
         return begin_;
     }
 
-    point3d & line3d::end() {
+    point3d line3d::begin() const {
+        return begin_;
+    }
+
+    point3d& line3d::end() {
+        return end_;
+    }
+
+    point3d line3d::end() const {
         return end_;
     }
 
@@ -36,8 +46,11 @@ namespace models {
         return line3d{point3d{startX, startY, startZ}, point3d{endX, endY, endZ}};
     }
 
+    utils::colour & line3d::colour() {
+        return colour_;
+    }
+
     void line3d::print() {
-        begin_.print();
-        end_.print();
+        std::cout << "line: [x" << begin().x() << ",y" << begin().y() << ",z" << begin().z() << "] -> [x" << end().x() << ",y" << end().y() << ",z" << end().z() << "]" << "\n";
     }
 }
