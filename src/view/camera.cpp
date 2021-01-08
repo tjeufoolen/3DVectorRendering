@@ -17,13 +17,12 @@ namespace view {
     }
 
     void camera::draw() {
-        auto m { *std::move(translationMatrix()) };
+        auto m { *std::move(transformationMatrix()) };
 
         // create a copy of the object so that we can execute our draw operations on it
         objects::object spaceship { world_.spaceship() };
 
-        spaceship.origin().print();
-
+        spaceship.origin().transform(m);
         spaceship.transform(m);
 
         // draw spaceship
@@ -35,6 +34,8 @@ namespace view {
 
             // create a copy of the object so that we can execute our draw operations on it
             objects::object obj { *obj_ptr };
+
+            obj.origin().transform(m);
             obj.transform(m);
 
             drawObject(obj);
@@ -52,9 +53,13 @@ namespace view {
         for (auto& line : obj.lines()) {
             // draw around origin
             double bx { origin.x() + line.begin().x() };
-            double by { origin.y() + line.begin().y() * -1 };
+            double by { origin.y() + line.begin().y() };
             double ex { origin.x() + line.end().x() };
-            double ey { origin.y() + line.end().y() * -1 };
+            double ey { origin.y() + line.end().y() };
+
+            // flip axis
+            bx *= -1, ex *= -1;
+            by *= -1, ey *= -1;
 
             // add screen center
             bx += config::WINDOW_WIDTH  / 2.0;
@@ -75,7 +80,7 @@ namespace view {
         return { eye - lookAt };
     }
 
-    models::matrix_ptr camera::translationMatrix() {
+    models::matrix_ptr camera::transformationMatrix() {
         // 1. Calculate direction vector and normalize
         models::point3d direction { camera::direction() };
         direction.normalize();

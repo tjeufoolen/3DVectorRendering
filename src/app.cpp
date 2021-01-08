@@ -7,8 +7,8 @@
 app::app()
     :   view_{"Eindopdracht Lineaire algebra - gemaakt door Stan Geitel en Tjeu Foolen.",
             config::WINDOW_WIDTH, config::WINDOW_HEIGHT, utils::colours::black, "assets/images/icon.png"},
-        world_{{0,0,0}, objects::spaceship{{0,50,0}}},
-        camera_{view_, world_, {0, 0, 100}},
+        world_{{0,0,0}, objects::spaceship{{0,0,0}}},
+        camera_{view_, world_, {100, 100, -100}},
         keyHandler_{world_, camera_}
 {
 
@@ -41,9 +41,9 @@ void app::init() {
     world_.addObject(std::make_unique<objects::object>(models::point3d{0,0,0}));
 
     // planets/asteroids
-    world_.addObject(std::make_unique<objects::cube>(models::point3d{-300, 50, -750}));
-    world_.addObject(std::make_unique<objects::pyramid>(models::point3d{0, 50, -500}));
-    world_.addObject(std::make_unique<objects::cube>(models::point3d{300, 50, -750}));
+    world_.addObject(std::make_unique<objects::cube>(models::point3d{-300,0,750}));
+    world_.addObject(std::make_unique<objects::pyramid>(models::point3d{0, 0, 500}));
+    world_.addObject(std::make_unique<objects::cube>(models::point3d{300, 0, 750}));
 }
 
 void app::draw() {

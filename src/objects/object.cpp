@@ -10,7 +10,7 @@ namespace objects {
         // x,y,z axis visualization
         addLine({models::point3d{0,0,0}, models::point3d{50,0,0}, config::X_AXIS_COLOUR});
         addLine({models::point3d{0,0,0}, models::point3d{0,50,0}, config::Y_AXIS_COLOUR});
-        addLine({models::point3d{0,0,0}, models::point3d{0,0,-50}, config::Z_AXIS_COLOUR});
+        addLine({models::point3d{0,0,0}, models::point3d{0,0,50}, config::Z_AXIS_COLOUR});
     }
 
     void object::transform(const models::Matrix &m) {

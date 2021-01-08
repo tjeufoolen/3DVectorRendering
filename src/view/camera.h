@@ -20,7 +20,7 @@ namespace view {
         void drawObject(objects::object& obj);
 
         models::point3d direction() const;
-        models::matrix_ptr translationMatrix();
+        models::matrix_ptr transformationMatrix();
     };
 }
 

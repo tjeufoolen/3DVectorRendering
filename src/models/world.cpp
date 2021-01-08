@@ -24,23 +24,15 @@ namespace models {
         }
     }
 
-    void world::scale(double scale) { // todo: test which scaling matrix to use
-//        spaceship_.transform(*std::move(models::matrix::localSpaceScalingMatrix(
-//            spaceship_.centrum().x(), spaceship_.centrum().y(), spaceship_.centrum().z(),
-//            scale, scale, scale
-//        )));
-        spaceship_.transform(*std::move(models::matrix::worldSpaceScalingMatrix(
-            scale, scale, scale
-        )));
+    void world::scale(double scale) {
+        auto m {*std::move(models::matrix::worldSpaceScalingMatrix(scale, scale, scale))};
+
+        spaceship_.transform(m);
+        spaceship_.origin().transform(m);
 
         for (auto& object : objects_) {
-//            object->transform(*std::move(models::matrix::localSpaceScalingMatrix(
-//                object->centrum().x(), object->centrum().y(), object->centrum().z(),
-//                scale, scale, scale
-//            )));
-            object->transform(*std::move(models::matrix::worldSpaceScalingMatrix(
-                scale, scale, scale
-            )));
+            object->transform(m);
+            object->origin().transform(m);
         }
     }
 
