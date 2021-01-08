@@ -18,12 +18,6 @@ namespace models {
         objects_.emplace_back(std::move(obj));
     }
 
-    void world::transformObjects(const models::Matrix &m) {
-        for (auto& object : objects_) {
-            object->transform(m);
-        }
-    }
-
     void world::scale(double scale) {
         auto m {*std::move(models::matrix::worldSpaceScalingMatrix(scale, scale, scale))};
 

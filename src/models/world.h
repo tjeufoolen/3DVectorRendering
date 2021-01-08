@@ -20,7 +20,6 @@ namespace models {
 
         std::vector<std::unique_ptr<objects::object>>& objects();
         void addObject(std::unique_ptr<objects::object> obj);
-        void transformObjects(const models::Matrix& m);
 
         void scale(double scale);
 
