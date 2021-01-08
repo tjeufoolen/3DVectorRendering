@@ -9,8 +9,10 @@ namespace view {
         view& view_;
         models::world& world_;
         models::point3d origin_;
+        double xDrawOffset_;
+        double yDrawOffset_;
     public:
-        camera(view& view, models::world& world, const models::point3d& origin = {0,0,0});
+        camera(view& view, models::world& world, const models::point3d& origin = {0,0,0}, double xDrawOffset=0, double yDrawOffset=0);
 
         void origin(double x, double y, double z);
         models::point3d& origin();
