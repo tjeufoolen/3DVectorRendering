@@ -65,6 +65,7 @@ namespace input {
                         0,0,-config::MOVE_STEPS_PER_KEY_PRESS)));
                 break;
             case SDLK_f:
+            case SDLK_LSHIFT:
                 world_.spaceship().origin().transform(*std::move(models::matrix::translationMatrix(
                         0,0,config::MOVE_STEPS_PER_KEY_PRESS)));
                 break;
