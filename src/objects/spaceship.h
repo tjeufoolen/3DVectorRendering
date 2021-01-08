@@ -3,10 +3,17 @@
 
 #include "object.h"
 
+namespace models {
+    class world; // forward declare
+}
+
 namespace objects {
     class spaceship : public object {
+        models::world& world_;
     public:
-        spaceship(const models::point3d& origin);
+        spaceship(const models::point3d& origin, models::world& world);
+
+        void shoot();
     };
 }
 

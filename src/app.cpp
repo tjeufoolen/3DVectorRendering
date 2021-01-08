@@ -3,11 +3,12 @@
 #include "cube.h"
 #include "pyramid.h"
 #include "config.h"
+#include "spaceship.h"
 
 app::app()
     :   view_{"Eindopdracht Lineaire algebra - gemaakt door Stan Geitel en Tjeu Foolen.",
             config::WINDOW_WIDTH, config::WINDOW_HEIGHT, utils::colours::black, "assets/images/icon.png"},
-        world_{{0,0,0}, objects::spaceship{{0,0,-400}}},
+        world_{{0,0,0}},
         camera_{view_, world_, {100, 100, -100}, config::WINDOW_WIDTH / 2.0, config::WINDOW_HEIGHT / 2.0},
         keyHandler_{world_, camera_}
 {
@@ -37,10 +38,14 @@ void app::run() {
 }
 
 void app::init() {
-    // basic object to display world coordinate system axis (placed directly on origin inside the world)
+    // add spaceship to world
+    world_.spaceship(std::make_unique<objects::spaceship>(
+            objects::spaceship{{0,0,-400}, world_}));
+
+    // add basic object to display world coordinate system axis (placed directly on origin inside the world)
     world_.addObject(std::make_unique<objects::object>(models::point3d{0,0,0}));
 
-    // planets/asteroids
+    // add other objects
     world_.addObject(std::make_unique<objects::cube>(models::point3d{-300,0,400}));
     world_.addObject(std::make_unique<objects::pyramid>(models::point3d{0, 0, 200}));
     world_.addObject(std::make_unique<objects::cube>(models::point3d{300, 0, 400}));

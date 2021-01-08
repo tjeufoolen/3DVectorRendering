@@ -4,13 +4,14 @@
 #include <algorithm>
 
 namespace objects {
-    object::object(const models::point3d& origin)
+    object::object(const models::point3d& origin, bool showAxis)
         :   origin_{origin}
     {
-        // x,y,z axis visualization
-        addLine({models::point3d{0,0,0}, models::point3d{50,0,0}, config::X_AXIS_COLOUR});
-        addLine({models::point3d{0,0,0}, models::point3d{0,50,0}, config::Y_AXIS_COLOUR});
-        addLine({models::point3d{0,0,0}, models::point3d{0,0,50}, config::Z_AXIS_COLOUR});
+        if (showAxis) {
+            addLine({models::point3d{0,0,0}, models::point3d{50,0,0}, config::X_AXIS_COLOUR});
+            addLine({models::point3d{0,0,0}, models::point3d{0,50,0}, config::Y_AXIS_COLOUR});
+            addLine({models::point3d{0,0,0}, models::point3d{0,0,50}, config::Z_AXIS_COLOUR});
+        }
     }
 
     void object::transform(const models::Matrix &m) {
@@ -60,6 +61,10 @@ namespace objects {
             yTotal / points,
             zTotal / points
         };
+    }
+
+    bool object::discard() {
+        return discard_;
     }
 
     void object::print() {

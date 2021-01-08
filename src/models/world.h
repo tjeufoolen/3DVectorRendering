@@ -7,16 +7,16 @@
 
 #include "view.h"
 #include "object.h"
-#include "spaceship.h"
 #include "point3d.h"
+#include "spaceship.h"
 
 namespace models {
     class world {
         point3d origin_;
         std::vector<std::unique_ptr<objects::object>> objects_;
-        objects::spaceship spaceship_;
+        std::unique_ptr<objects::spaceship> spaceship_;
     public:
-        world(const models::point3d& origin = {0,0,0}, const objects::spaceship& spaceship = {{0,0,0}});
+        world(const models::point3d& origin = {0,0,0,0});
 
         std::vector<std::unique_ptr<objects::object>>& objects();
         void addObject(std::unique_ptr<objects::object> obj);
@@ -24,6 +24,7 @@ namespace models {
         void scale(double scale);
 
         objects::spaceship& spaceship();
+        void spaceship(std::unique_ptr<objects::spaceship> spaceship);
 
         point3d origin() const;
         void origin(double x, double y, double z);

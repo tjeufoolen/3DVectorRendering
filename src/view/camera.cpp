@@ -23,8 +23,14 @@ namespace view {
         // draw spaceship
         drawObject(spaceship);
 
+        auto& objects { world_.objects() };
+
+        // remove objects that are marked to be discard
+        auto shouldDiscard { [](auto& obj){ return obj->discard(); } };
+        objects.erase(std::remove_if(objects.begin(), objects.end(), shouldDiscard), objects.end());
+
         // draw objects
-        for (auto& obj_ptr : world_.objects()) {
+        for (auto& obj_ptr : objects) {
             obj_ptr->animate();
             objects::object obj { *obj_ptr }; // create a copy, so that we can keep the actual values
             drawObject(obj);
@@ -62,8 +68,10 @@ namespace view {
             by += yDrawOffset_, ey += yDrawOffset_;
 
             view_.renderLine(bx, by, ex, ey, line.colour());
-            view_.renderCircle(bx, by, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
-            view_.renderCircle(ex, ey, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
+            if (config::DRAW_POINTS) {
+                view_.renderCircle(bx, by, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
+                view_.renderCircle(ex, ey, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
+            }
         }
     }
 
@@ -84,7 +92,7 @@ namespace view {
         right.normalize();
 
         // 3. Calculate up vector with cross product from direction- and right- vector, normalize after
-        models::point3d up = direction.crossProduct(right);
+        models::point3d up { direction.crossProduct(right) };
         up.normalize();
 
         // 4. Combine matrices and return

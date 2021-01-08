@@ -66,6 +66,8 @@ namespace input {
                 world_.spaceship().transform(*std::move(models::matrix::rotateY(
                         -config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
+
+            // move
             case SDLK_r:
                 world_.spaceship().origin().transform(*std::move(models::matrix::translationMatrix(
                         0,0,-config::MOVE_STEPS_PER_KEY_PRESS)));
@@ -74,6 +76,11 @@ namespace input {
             case SDLK_LSHIFT:
                 world_.spaceship().origin().transform(*std::move(models::matrix::translationMatrix(
                         0,0,config::MOVE_STEPS_PER_KEY_PRESS)));
+                break;
+
+            // shoot
+            case SDLK_SPACE:
+                world_.spaceship().shoot();
                 break;
         }
     }
