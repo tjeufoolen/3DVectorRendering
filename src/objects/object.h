@@ -17,6 +17,7 @@ namespace objects {
         std::vector<models::line3d> lines_;
         models::point3d origin_;
         bool discard_{false}; // update this if you want to remove the object from the world the next iteration
+        models::point3d heading_;
     public:
         object(const models::point3d& origin = {0, 0, 0}, bool showAxis = true);
 
@@ -28,6 +29,8 @@ namespace objects {
         models::point3d origin() const;
         models::point3d& origin();
 
+        const models::point3d& heading() const;
+
         models::point3d centrum() const;
 
         virtual void animate() {}; // runs every game loop
@@ -35,7 +38,7 @@ namespace objects {
 
         void print();
     protected:
-        void addLine(models::line3d line);
+        models::line3d& addLine(models::line3d line);
     };
 }
 

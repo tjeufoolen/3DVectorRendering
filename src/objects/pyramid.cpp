@@ -2,8 +2,8 @@
 
 namespace objects {
     pyramid::pyramid(const models::point3d& origin)
-        :   object(origin),
-            scale_{1}, scaleFactor_{1.01}, maxScale_{2}, minScale_{1}
+        :   scale_{1}, scaleFactor_{1.01}, maxScale_{2}, minScale_{1},
+            object{origin}
     {
         //       E
         //      / \

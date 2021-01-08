@@ -10,12 +10,10 @@ namespace models {
 namespace objects {
     class spaceship : public object {
         models::world& world_;
-        models::point3d heading_;
     public:
         spaceship(const models::point3d& origin, models::world& world);
 
         void transform(const models::Matrix &m) override;
-        const models::point3d& heading() const;
 
         void shoot();
     };

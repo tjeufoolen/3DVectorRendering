@@ -42,10 +42,6 @@ void app::init() {
     world_.spaceship(std::make_unique<objects::spaceship>(
             objects::spaceship{{0,0,-400}, world_}));
 
-    // temp: temporarily for debug purposes, remove after!
-    world_.spaceship().transform(*std::move(models::matrix::rotateY(45)));
-    // temp: temporarily for debug purposes, remove after!
-
     // add basic object to display world coordinate system axis (placed directly on origin inside the world)
     world_.addObject(std::make_unique<objects::object>(models::point3d{0,0,0}));
 

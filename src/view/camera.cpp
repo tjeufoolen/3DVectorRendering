@@ -46,7 +46,7 @@ namespace view {
         const auto origin { camera::origin() + world_.origin() + obj.origin() };
 
         // draw lines
-        for (auto& line : obj.lines()) {
+        for (auto line : obj.lines()) {
             // draw around origin
             double bx { line.begin().x() };
             double by { line.begin().y() };
@@ -70,6 +70,9 @@ namespace view {
                 view_.renderCircle(ex, ey, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
             }
         }
+
+        // draw origin dot (useful for debug purposes)
+//        view_.renderCircle(origin.x() + xDrawOffset_, origin.y() * -1 + yDrawOffset_, config::ORIGIN_POINT_DIAMETER, config::ORIGIN_POINT_FILL_COLOUR);
     }
 
     models::point3d camera::direction() const {

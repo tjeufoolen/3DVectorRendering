@@ -9,7 +9,7 @@ namespace objects {
     class bullet : public object {
         const objects::spaceship& spaceship_;
 
-        double zOffset_;
+        models::point3d step_;
     public:
         bullet(const models::point3d& origin, const objects::spaceship& spaceship);
 

@@ -2,7 +2,7 @@
 
 namespace objects {
     cube::cube(const models::point3d& origin)
-        : object(origin)
+        :   object{origin}
     {
         //     H---------G
         //    /|        /|
