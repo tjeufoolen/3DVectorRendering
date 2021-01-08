@@ -26,12 +26,18 @@ namespace input {
             case SDLK_DOWN:
                 camera_.origin().transform(*std::move(models::matrix::rotateX(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
-
-            // world scaling // todo (nice-to-have): keys should be replaced by zoom functionality (perspective)
             case SDLK_PAGEUP:
-                world_.scale(config::UP_SCALE_STEPS_PER_KEY_PRESS);
+                camera_.origin().transform(*std::move(models::matrix::rotateZ(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
             case SDLK_PAGEDOWN:
+                camera_.origin().transform(*std::move(models::matrix::rotateZ(config::ROTATION_DEGREES_PER_KEY_PRESS)));
+                break;
+
+            // world scaling
+            case SDLK_HOME:
+                world_.scale(config::UP_SCALE_STEPS_PER_KEY_PRESS);
+                break;
+            case SDLK_END:
                 world_.scale(config::DOWN_SCALE_STEPS_PER_KEY_PRESS);
                 break;
 
