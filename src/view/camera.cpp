@@ -17,13 +17,13 @@ namespace view {
     }
 
     void camera::draw() {
-        auto m { *std::move(transformationMatrix()) };
+        auto cameraTransformationMatrix { *std::move(transformationMatrix()) };
 
         // create a copy of the object so that we can execute our draw operations on it
         objects::object spaceship { world_.spaceship() };
 
-        spaceship.origin().transform(m);
-        spaceship.transform(m);
+        spaceship.origin().transform(cameraTransformationMatrix);
+        spaceship.transform(cameraTransformationMatrix);
 
         // draw spaceship
         drawObject(spaceship);
@@ -35,8 +35,8 @@ namespace view {
             // create a copy of the object so that we can execute our draw operations on it
             objects::object obj { *obj_ptr };
 
-            obj.origin().transform(m);
-            obj.transform(m);
+            obj.origin().transform(cameraTransformationMatrix);
+            obj.transform(cameraTransformationMatrix);
 
             drawObject(obj);
         }
