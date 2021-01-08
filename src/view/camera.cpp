@@ -42,13 +42,11 @@ namespace view {
         obj.origin().transform(cameraTransformationMatrix);
         obj.transform(cameraTransformationMatrix);
 
-        const auto& co { camera::origin() };
-        const auto& wo { world_.origin() };
-        const auto& oo { obj.origin() };
-        const auto origin { co + wo + oo };
+        // calculate base origin
+        const auto origin { camera::origin() + world_.origin() + obj.origin() };
 
         // draw lines
-        for (auto& line : obj.lines()) {
+        for (auto line : obj.lines()) {
             // draw around origin
             double bx { line.begin().x() };
             double by { line.begin().y() };
@@ -59,8 +57,7 @@ namespace view {
             bx += origin.x(), ex += origin.x();
             by += origin.y(), ey += origin.y();
 
-            // flip axis
-            bx *= -1, ex *= -1;
+            // flip y axis
             by *= -1, ey *= -1;
 
             // add screen offset (position to render on screen)
@@ -73,6 +70,9 @@ namespace view {
                 view_.renderCircle(ex, ey, config::POINT_DIAMETER, config::POINT_FILL_COLOUR);
             }
         }
+
+        // draw origin dot (useful for debug purposes)
+//        view_.renderCircle(origin.x() + xDrawOffset_, origin.y() * -1 + yDrawOffset_, config::ORIGIN_POINT_DIAMETER, config::ORIGIN_POINT_FILL_COLOUR);
     }
 
     models::point3d camera::direction() const {

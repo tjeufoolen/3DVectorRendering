@@ -1,27 +1,38 @@
 #include "bullet.h"
 
-#include <iostream>
+#include "spaceship.h"
 
 namespace objects {
     bullet::bullet(const models::point3d& origin, const objects::spaceship& spaceship)
-        :   spaceship_{spaceship}, zOffset_{225}, object(origin, false)
+        :   spaceship_{spaceship},
+            step_{spaceship.heading().x(), spaceship.heading().y(), spaceship.heading().z()},
+            object{origin, false}
     {
-        double length { 20 };
+        double length { 30 };
 
-        models::point3d a { 0, 0, zOffset_ - (length/2), 0 };
-        models::point3d b { 0, 0, zOffset_ + (length/2), 0 };
+        models::point3d begin { 0, 0, 0, 0 };
+        models::point3d end { begin.x(), begin.y(), begin.z(), 0 };
 
-        addLine({a, b, config::BULLET_COLOUR});
+        // calculate bullet angle
+        end.x(end.x() + length * step_.x());
+        end.y(end.y() + length * step_.y());
+        end.z(end.z() + length * step_.z());
+
+        addLine({begin, end, config::BULLET_COLOUR});
     }
 
     void bullet::animate()
     {
         if (!discard_) {
-            // simple check if bullet is too far away, if it is safe memory space by removing it
-            if (origin().z() > 1000) {
-                discard_ = true;
+            double maxBoundingBox { 1000 };
+
+            // simple check if bullet is too far away.
+            // if it is, safe memory space by removing the bullet from the world
+            if (origin().x() < maxBoundingBox && origin().y() < maxBoundingBox && origin().z() < maxBoundingBox) {
+                auto m { models::matrix::translationMatrix(step_.x() * 10, step_.y() * 10, step_.z() * 10) };
+                origin().transform({*std::move(m)});
             } else {
-                origin().transform(*std::move(models::matrix::translationMatrix(0,0,config::BULLET_SPEED)));
+                discard_ = true;
             }
         }
     }

@@ -13,20 +13,23 @@ namespace models {
 
 namespace objects {
     class object {
+    protected:
         std::vector<models::line3d> lines_;
         models::point3d origin_;
-    protected:
         bool discard_{false}; // update this if you want to remove the object from the world the next iteration
+        models::point3d heading_;
     public:
         object(const models::point3d& origin = {0, 0, 0}, bool showAxis = true);
 
-        void transform(const models::Matrix& m);
+        virtual void transform(const models::Matrix& m);
 
         std::vector<models::line3d>& lines();
 
         void origin(double x, double y, double z);
         models::point3d origin() const;
         models::point3d& origin();
+
+        const models::point3d& heading() const;
 
         models::point3d centrum() const;
 
@@ -35,7 +38,7 @@ namespace objects {
 
         void print();
     protected:
-        void addLine(models::line3d line);
+        models::line3d& addLine(models::line3d line);
     };
 }
 

@@ -7,6 +7,8 @@ namespace config {
     static bool DRAW_POINTS { false };
 
     static double POINT_DIAMETER { 2 };
+    static double ORIGIN_POINT_DIAMETER { 5 };
+    static utils::colour ORIGIN_POINT_FILL_COLOUR { utils::colours::yellow };
     static utils::colour POINT_FILL_COLOUR { utils::colours::grey };
     static utils::colour LINE_STROKE_COLOUR { utils::colours::grey };
     static utils::colour BULLET_COLOUR { utils::colours::yellow };

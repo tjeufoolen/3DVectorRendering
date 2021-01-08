@@ -22,6 +22,10 @@ namespace models {
         static matrix_ptr rotateX(double degrees);
         static matrix_ptr rotateY(double degrees);
         static matrix_ptr rotateZ(double degrees);
+        static matrix_ptr randomAxisRotationMatrixToXYSpace(double x, double z);
+        static matrix_ptr randomAxisRotationMatrixToXAxis(double x, double y, double z);
+        static matrix_ptr randomAxisRotationMatrixFromXAxis(double x, double y, double z);
+        static matrix_ptr randomAxisRotationMatrixFromXYSpace(double x, double z);
         static matrix_ptr randomAxisRotationMatrix(double x, double y, double z, double a);
         static matrix_ptr localSpaceScalingMatrix(double x, double y, double z, double sx, double sy, double sz);
         static matrix_ptr worldSpaceScalingMatrix(double sx, double sy, double sz);
@@ -33,11 +37,6 @@ namespace models {
     private:
         static const int columns_;
         static const int rows_;
-
-        static matrix_ptr randomAxisRotationMatrixToXYSpace(double x, double z);
-        static matrix_ptr randomAxisRotationMatrixToXAxis(double x, double y, double z);
-        static matrix_ptr randomAxisRotationMatrixFromXAxis(double x, double y, double z);
-        static matrix_ptr randomAxisRotationMatrixFromXYSpace(double x, double z);
     };
 }
 

@@ -13,6 +13,8 @@ namespace objects {
     public:
         spaceship(const models::point3d& origin, models::world& world);
 
+        void transform(const models::Matrix &m) override;
+
         void shoot();
     };
 }

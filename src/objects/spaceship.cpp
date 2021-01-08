@@ -6,7 +6,8 @@
 
 namespace objects {
     spaceship::spaceship(const models::point3d& origin, models::world& world)
-        :   object(origin), world_{world}
+        :   world_{world},
+            object{origin}
     {
         addLine({{78.1084,30,-100},{68.9468,46.821,-100}});
         addLine({{68.9468,46.821,-100},{72.3757,40.5256,-91.9498}});
@@ -570,7 +571,12 @@ namespace objects {
         addLine({{-155.666,86.3546,-149.38},{-156.882,84.1218,-149.38}});
     }
 
+    void spaceship::transform(const models::Matrix &m) {
+        object::transform(m);
+    }
+
     void spaceship::shoot() {
-        world_.addObject(std::make_unique<objects::bullet>(origin(), *this));
+        auto bullet {std::make_unique<objects::bullet>(origin_, *this)};
+        world_.addObject(std::move(bullet));
     }
 }
