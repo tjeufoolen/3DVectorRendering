@@ -13,14 +13,14 @@ namespace models {
 
 namespace objects {
     class object {
+    protected:
         std::vector<models::line3d> lines_;
         models::point3d origin_;
-    protected:
         bool discard_{false}; // update this if you want to remove the object from the world the next iteration
     public:
         object(const models::point3d& origin = {0, 0, 0}, bool showAxis = true);
 
-        void transform(const models::Matrix& m);
+        virtual void transform(const models::Matrix& m);
 
         std::vector<models::line3d>& lines();
 
