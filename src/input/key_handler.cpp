@@ -26,12 +26,18 @@ namespace input {
             case SDLK_DOWN:
                 camera_.origin().transform(*std::move(models::matrix::rotateX(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
-
-            // world scaling // todo: keys should be replaced by zoom functionality (perspective)
             case SDLK_PAGEUP:
-                world_.scale(config::UP_SCALE_STEPS_PER_KEY_PRESS);
+                camera_.origin().transform(*std::move(models::matrix::rotateZ(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
             case SDLK_PAGEDOWN:
+                camera_.origin().transform(*std::move(models::matrix::rotateZ(config::ROTATION_DEGREES_PER_KEY_PRESS)));
+                break;
+
+            // world scaling
+            case SDLK_HOME:
+                world_.scale(config::UP_SCALE_STEPS_PER_KEY_PRESS);
+                break;
+            case SDLK_END:
                 world_.scale(config::DOWN_SCALE_STEPS_PER_KEY_PRESS);
                 break;
 
@@ -59,6 +65,26 @@ namespace input {
             case SDLK_a:
                 world_.spaceship().transform(*std::move(models::matrix::rotateY(
                         -config::ROTATION_DEGREES_PER_KEY_PRESS)));
+                break;
+
+            // move
+            case SDLK_r:
+                world_.spaceship().origin().transform(*std::move(models::matrix::translationMatrix(
+                        world_.spaceship().heading().x() * -config::MOVE_STEPS_PER_KEY_PRESS,
+                        world_.spaceship().heading().y() * -config::MOVE_STEPS_PER_KEY_PRESS,
+                        world_.spaceship().heading().z() * -config::MOVE_STEPS_PER_KEY_PRESS)));
+                break;
+            case SDLK_f:
+            case SDLK_LSHIFT:
+                world_.spaceship().origin().transform(*std::move(models::matrix::translationMatrix(
+                        world_.spaceship().heading().x() * config::MOVE_STEPS_PER_KEY_PRESS,
+                        world_.spaceship().heading().y() * config::MOVE_STEPS_PER_KEY_PRESS,
+                        world_.spaceship().heading().z() * config::MOVE_STEPS_PER_KEY_PRESS)));
+                break;
+
+            // shoot
+            case SDLK_SPACE:
+                world_.spaceship().shoot();
                 break;
         }
     }

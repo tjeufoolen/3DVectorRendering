@@ -1,6 +1,5 @@
 #include <SDL.h>
 
-#include "logger.h"
 #include "app.h"
 
 //
@@ -17,9 +16,6 @@
 //
 
 int main(int argc, char *argv[])  {
-
-    utils::logger::getInstance().toggleDebugMessages(true);
     app{}.run();
-
     return 0;
 }

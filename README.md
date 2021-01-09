@@ -1,8 +1,26 @@
 # LINAL-Eindopdracht
-Eindopdracht voor lineaire algebra (SWA minor)
+Assignment lineaire algebra (SWA minor)
 
-## Opdracht
-De Eindopdracht is [hier](LINAL_Assessment_2020-11-13.pdf) te vinden.
+## Dependencies
+- [SDL2](https://www.libsdl.org/download-2.0.php)
+- [SDL2_image](https://www.libsdl.org/projects/SDL_image/)
+- [SDL2_ttf](https://www.libsdl.org/projects/SDL_ttf/)
+
+Disclaimer; the libraries are already present inside the external folder to use on windows. If you would like to
+run this project on Linux or MacOSX be sure to download the correct development libraries and install them on
+your system.
+
+## Getting started
+1. Clone this project.
+2. Open the project with your ide of choice that supports CMake projects.
+3. Run the project with the root `CMakeLists.txt` file! :tada:
+
+## Testing
+This project includes the test framework [Catch2](https://github.com/catchorg/Catch2). To use this framework and start testing, 
+change `set(RUN_TESTS FALSE)` to `set(RUN_TESTS TRUE)` inside the `CMakeLists.txt` file.
+
+## Assignment
+The original assignment document can be found [here](LINAL_Assessment_2020-11-13.pdf).
 
 ## Authors
 - [Tjeu Foolen](https://github.com/tjeufoolen)

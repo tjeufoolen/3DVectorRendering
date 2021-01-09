@@ -1,8 +1,14 @@
+#include <algorithm>
 #include "spaceship.h"
 
+#include "bullet.h"
+
+#include "world.h"
+
 namespace objects {
-    spaceship::spaceship(const models::point3d& origin)
-        : object(origin)
+    spaceship::spaceship(const models::point3d& origin, models::world& world)
+        :   world_{world},
+            object{origin}
     {
         addLine({{78.1084,30,-100},{68.9468,46.821,-100}});
         addLine({{68.9468,46.821,-100},{72.3757,40.5256,-91.9498}});
@@ -564,5 +570,25 @@ namespace objects {
         addLine({{-156.882,84.1218,-149.38},{-156.882,84.1218,-105.706}});
         addLine({{-156.882,84.1218,-105.706},{-155.666,86.3546,-149.38}});
         addLine({{-155.666,86.3546,-149.38},{-156.882,84.1218,-149.38}});
+    }
+
+    void spaceship::transform(const models::Matrix &m) {
+        object::transform(m);
+    }
+
+    bool spaceship::isAlive() const {
+        return alive_;
+    }
+
+    void spaceship::onCollision(const objects::object &other) {
+        if (!std::count(bulletIds_.begin(), bulletIds_.end(), other.id())) {
+            alive_ = false;
+        }
+    }
+
+    void spaceship::shoot() {
+        auto bullet {std::make_unique<objects::bullet>(origin_, *this)};
+        bulletIds_.emplace_back(bullet->id());
+        world_.addObject(std::move(bullet));
     }
 }
