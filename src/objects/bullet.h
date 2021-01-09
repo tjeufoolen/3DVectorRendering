@@ -13,6 +13,8 @@ namespace objects {
     public:
         bullet(const models::point3d& origin, const objects::spaceship& spaceship);
 
+        void onCollision(const objects::object &other) override;
+
         void animate() override;
     };
 }

@@ -21,6 +21,12 @@ namespace objects {
         addLine({begin, end, config::BULLET_COLOUR});
     }
 
+    void bullet::onCollision(const objects::object &other) {
+        if (other.id() != spaceship_.id()) {
+            object::onCollision(other);
+        }
+    }
+
     void bullet::animate()
     {
         if (!discard_) {

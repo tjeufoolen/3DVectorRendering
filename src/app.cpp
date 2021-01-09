@@ -43,7 +43,7 @@ void app::init() {
             objects::spaceship{{0,0,-400}, world_}));
 
     // add basic object to display world coordinate system axis (placed directly on origin inside the world)
-    world_.addObject(std::make_unique<objects::object>(models::point3d{0,0,0}));
+    world_.addObject(std::make_unique<objects::object>(models::point3d{0,0,0}, true, false));
 
     // add other objects
     world_.addObject(std::make_unique<objects::cube>(models::point3d{-300,0,400}));
@@ -52,5 +52,12 @@ void app::init() {
 }
 
 void app::draw() {
+    auto& objects { world_.objects() };
+
+    // remove objects that are marked to be discard
+    auto shouldDiscard { [](auto& obj){ return obj->discard(); } };
+    objects.erase(std::remove_if(objects.begin(), objects.end(), shouldDiscard), objects.end());
+
+    // draw objects to screen
     camera_.draw();
 }

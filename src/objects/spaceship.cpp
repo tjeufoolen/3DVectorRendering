@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "spaceship.h"
 
 #include "bullet.h"
@@ -575,8 +576,19 @@ namespace objects {
         object::transform(m);
     }
 
+    bool spaceship::isAlive() const {
+        return alive_;
+    }
+
+    void spaceship::onCollision(const objects::object &other) {
+        if (!std::count(bulletIds_.begin(), bulletIds_.end(), other.id())) {
+            alive_ = false;
+        }
+    }
+
     void spaceship::shoot() {
         auto bullet {std::make_unique<objects::bullet>(origin_, *this)};
+        bulletIds_.emplace_back(bullet->id());
         world_.addObject(std::move(bullet));
     }
 }

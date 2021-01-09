@@ -17,23 +17,39 @@ namespace view {
     }
 
     void camera::draw() {
-        // create a copy of the object so that we can execute our draw operations on it
-        objects::object spaceship { world_.spaceship() };
+        if (world_.spaceship().isAlive()) {
+            // create a copy of the object so that we can execute our draw operations on it
+            objects::object spaceship { world_.spaceship() };
 
-        // draw spaceship
-        drawObject(spaceship);
-
-        auto& objects { world_.objects() };
-
-        // remove objects that are marked to be discard
-        auto shouldDiscard { [](auto& obj){ return obj->discard(); } };
-        objects.erase(std::remove_if(objects.begin(), objects.end(), shouldDiscard), objects.end());
+            // draw spaceship
+            drawObject(spaceship);
+        }
 
         // draw objects
-        for (auto& obj_ptr : objects) {
+        for (auto& obj_ptr : world_.objects()) {
             obj_ptr->animate();
             objects::object obj { *obj_ptr }; // create a copy, so that we can keep the actual values
             drawObject(obj);
+        }
+
+        // check if spaceship collides with any of the objects
+        if (world_.spaceship().isAlive()) {
+            for (auto& obj_ptr : world_.objects()) {
+                if (world_.spaceship().collides(*obj_ptr)) {
+                    world_.spaceship().onCollision(*obj_ptr);
+                }
+            }
+        }
+
+        // check if objects collide with each other
+        for (auto& obj_ptr : world_.objects()) {
+            for (auto& other_ptr : world_.objects()) {
+                if (obj_ptr->id() == other_ptr->id()) continue;
+
+                if (obj_ptr->collides(*other_ptr)) {
+                    obj_ptr->onCollision(*other_ptr);
+                }
+            }
         }
     }
 
@@ -72,7 +88,7 @@ namespace view {
         }
 
         // draw origin dot (useful for debug purposes)
-//        view_.renderCircle(origin.x() + xDrawOffset_, origin.y() * -1 + yDrawOffset_, config::ORIGIN_POINT_DIAMETER, config::ORIGIN_POINT_FILL_COLOUR);
+        view_.renderCircle(origin.x() + xDrawOffset_, origin.y() * -1 + yDrawOffset_, config::ORIGIN_POINT_DIAMETER, config::ORIGIN_POINT_FILL_COLOUR);
     }
 
     models::point3d camera::direction() const {
