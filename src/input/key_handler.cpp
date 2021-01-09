@@ -70,12 +70,16 @@ namespace input {
             // move
             case SDLK_r:
                 world_.spaceship().origin().transform(*std::move(models::matrix::translationMatrix(
-                        0,0,-config::MOVE_STEPS_PER_KEY_PRESS)));
+                        world_.spaceship().heading().x() * -config::MOVE_STEPS_PER_KEY_PRESS,
+                        world_.spaceship().heading().y() * -config::MOVE_STEPS_PER_KEY_PRESS,
+                        world_.spaceship().heading().z() * -config::MOVE_STEPS_PER_KEY_PRESS)));
                 break;
             case SDLK_f:
             case SDLK_LSHIFT:
                 world_.spaceship().origin().transform(*std::move(models::matrix::translationMatrix(
-                        0,0,config::MOVE_STEPS_PER_KEY_PRESS)));
+                        world_.spaceship().heading().x() * config::MOVE_STEPS_PER_KEY_PRESS,
+                        world_.spaceship().heading().y() * config::MOVE_STEPS_PER_KEY_PRESS,
+                        world_.spaceship().heading().z() * config::MOVE_STEPS_PER_KEY_PRESS)));
                 break;
 
             // shoot
