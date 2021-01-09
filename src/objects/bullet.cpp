@@ -35,7 +35,7 @@ namespace objects {
             // simple check if bullet is too far away.
             // if it is, safe memory space by removing the bullet from the world
             if (origin().x() < maxBoundingBox && origin().y() < maxBoundingBox && origin().z() < maxBoundingBox) {
-                auto m { models::matrix::translationMatrix(step_.x() * 10, step_.y() * 10, step_.z() * 10) };
+                auto m { models::matrix::translationMatrix(step_.x() * config::BULLET_SPEED, step_.y() * config::BULLET_SPEED, step_.z() * config::BULLET_SPEED) };
                 origin().transform({*std::move(m)});
             } else {
                 discard_ = true;
