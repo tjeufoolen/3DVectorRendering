@@ -1,5 +1,5 @@
-# LINAL-Eindopdracht
-Assignment lineaire algebra (SWA minor)
+# CPP_3DVectorRendering
+Basic c++ implementation of 3D rendering a vector object using mathematics.
 
 ## Dependencies
 - [SDL2](https://www.libsdl.org/download-2.0.php)
@@ -19,9 +19,5 @@ your system.
 This project includes the test framework [Catch2](https://github.com/catchorg/Catch2). To use this framework and start testing, 
 change `set(RUN_TESTS FALSE)` to `set(RUN_TESTS TRUE)` inside the `CMakeLists.txt` file.
 
-## Assignment
-The original assignment document can be found [here](LINAL_Assessment_2020-11-13.pdf).
-
 ## Authors
 - [Tjeu Foolen](https://github.com/tjeufoolen)
-- [Stan Geitel](https://github.com/stangeitel)
