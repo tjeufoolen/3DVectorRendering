@@ -12,7 +12,7 @@ your system.
 
 ## Getting started
 1. Clone this project.
-2. Open the project with your ide of choice that supports CMake projects.
+2. Open the project with your ide of choice (support for CMake is required).
 3. Run the project with the root `CMakeLists.txt` file! :tada:
 
 ## Testing
