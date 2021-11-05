@@ -1,5 +1,5 @@
-#ifndef LINAL_EINDOPDRACHT_VIEW_H
-#define LINAL_EINDOPDRACHT_VIEW_H
+#ifndef CPP_3DVECTORRENDERING_VIEW_H
+#define CPP_3DVECTORRENDERING_VIEW_H
 
 #include <SDL.h>
 #include <memory>
@@ -41,4 +41,4 @@ namespace view {
     };
 }
 
-#endif //LINAL_EINDOPDRACHT_VIEW_H
+#endif //CPP_3DVECTORRENDERING_VIEW_H

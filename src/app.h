@@ -1,5 +1,5 @@
-#ifndef LINAL_EINDOPDRACHT_APP_H
-#define LINAL_EINDOPDRACHT_APP_H
+#ifndef CPP_3DVECTORRENDERING_APP_H
+#define CPP_3DVECTORRENDERING_APP_H
 
 #include "view.h"
 #include "camera.h"
@@ -20,4 +20,4 @@ public:
 };
 
 
-#endif //LINAL_EINDOPDRACHT_APP_H
+#endif //CPP_3DVECTORRENDERING_APP_H

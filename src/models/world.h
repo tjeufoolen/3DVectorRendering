@@ -1,5 +1,5 @@
-#ifndef LINAL_EINDOPDRACHT_WORLD_H
-#define LINAL_EINDOPDRACHT_WORLD_H
+#ifndef CPP_3DVECTORRENDERING_WORLD_H
+#define CPP_3DVECTORRENDERING_WORLD_H
 
 #include <map>
 #include <vector>
@@ -33,4 +33,4 @@ namespace models {
     };
 }
 
-#endif //LINAL_EINDOPDRACHT_WORLD_H
+#endif //CPP_3DVECTORRENDERING_WORLD_H

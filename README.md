@@ -18,6 +18,3 @@ your system.
 ## Testing
 This project includes the test framework [Catch2](https://github.com/catchorg/Catch2). To use this framework and start testing, 
 change `set(RUN_TESTS FALSE)` to `set(RUN_TESTS TRUE)` inside the `CMakeLists.txt` file.
-
-## Authors
-- [Tjeu Foolen](https://github.com/tjeufoolen)

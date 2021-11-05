@@ -10,7 +10,7 @@ namespace models {
 
     }
 
-    std::vector<std::unique_ptr<objects::object>> & world::objects() {
+    std::vector<std::unique_ptr<objects::object>>& world::objects() {
         return objects_;
     }
 

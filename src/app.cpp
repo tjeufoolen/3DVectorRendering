@@ -6,7 +6,7 @@
 #include "spaceship.h"
 
 app::app()
-    :   view_{"Eindopdracht Lineaire algebra - gemaakt door Stan Geitel en Tjeu Foolen.",
+    :   view_{"CPP_3DVectorRendering",
             config::WINDOW_WIDTH, config::WINDOW_HEIGHT, utils::colours::black, "assets/images/icon.png"},
         world_{{0,0,0}},
         camera_{view_, world_, {100, 100, -100}, config::WINDOW_WIDTH / 2.0, config::WINDOW_HEIGHT / 2.0},

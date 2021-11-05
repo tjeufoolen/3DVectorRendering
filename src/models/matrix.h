@@ -1,5 +1,5 @@
-#ifndef LINAL_EINDOPDRACHT_MATRIX_H
-#define LINAL_EINDOPDRACHT_MATRIX_H
+#ifndef CPP_3DVECTORRENDERING_MATRIX_H
+#define CPP_3DVECTORRENDERING_MATRIX_H
 
 #include <memory>
 #include <array>
@@ -40,4 +40,4 @@ namespace models {
     };
 }
 
-#endif //LINAL_EINDOPDRACHT_MATRIX_H
+#endif //CPP_3DVECTORRENDERING_MATRIX_H

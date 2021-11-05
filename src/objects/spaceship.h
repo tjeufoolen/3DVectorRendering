@@ -1,5 +1,5 @@
-#ifndef LINAL_EINDOPDRACHT_SPACESHIP_H
-#define LINAL_EINDOPDRACHT_SPACESHIP_H
+#ifndef CPP_3DVECTORRENDERING_SPACESHIP_H
+#define CPP_3DVECTORRENDERING_SPACESHIP_H
 
 #include <vector>
 
@@ -12,7 +12,7 @@ namespace models {
 namespace objects {
     class spaceship : public object {
         models::world& world_;
-        bool alive_;
+        bool alive_ = true;
         std::vector<int> bulletIds_;
     public:
         spaceship(const models::point3d& origin, models::world& world);
@@ -26,4 +26,4 @@ namespace objects {
     };
 }
 
-#endif //LINAL_EINDOPDRACHT_SPACESHIP_H
+#endif //CPP_3DVECTORRENDERING_SPACESHIP_H

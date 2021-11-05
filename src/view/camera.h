@@ -1,5 +1,5 @@
-#ifndef LINAL_EINDOPDRACHT_CAMERA_H
-#define LINAL_EINDOPDRACHT_CAMERA_H
+#ifndef CPP_3DVECTORRENDERING_CAMERA_H
+#define CPP_3DVECTORRENDERING_CAMERA_H
 
 #include "view.h"
 #include "world.h"
@@ -26,4 +26,4 @@ namespace view {
     };
 }
 
-#endif //LINAL_EINDOPDRACHT_CAMERA_H
+#endif //CPP_3DVECTORRENDERING_CAMERA_H

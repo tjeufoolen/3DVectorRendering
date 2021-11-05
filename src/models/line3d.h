@@ -1,5 +1,5 @@
-#ifndef LINAL_EINDOPDRACHT_LINE3D_H
-#define LINAL_EINDOPDRACHT_LINE3D_H
+#ifndef CPP_3DVECTORRENDERING_LINE3D_H
+#define CPP_3DVECTORRENDERING_LINE3D_H
 
 #include "point3d.h"
 #include "colour.h"
@@ -38,4 +38,4 @@ namespace models {
     };
 }
 
-#endif //LINAL_EINDOPDRACHT_LINE3D_H
+#endif //CPP_3DVECTORRENDERING_LINE3D_H

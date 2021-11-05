@@ -27,17 +27,21 @@ namespace input {
                 camera_.origin().transform(*std::move(models::matrix::rotateX(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
             case SDLK_PAGEUP:
+            case SDLK_LEFTBRACKET:
                 camera_.origin().transform(*std::move(models::matrix::rotateZ(-config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
             case SDLK_PAGEDOWN:
+            case SDLK_RIGHTBRACKET:
                 camera_.origin().transform(*std::move(models::matrix::rotateZ(config::ROTATION_DEGREES_PER_KEY_PRESS)));
                 break;
 
             // world scaling
             case SDLK_HOME:
+            case SDLK_EQUALS:
                 world_.scale(config::UP_SCALE_STEPS_PER_KEY_PRESS);
                 break;
             case SDLK_END:
+            case SDLK_MINUS:
                 world_.scale(config::DOWN_SCALE_STEPS_PER_KEY_PRESS);
                 break;
 

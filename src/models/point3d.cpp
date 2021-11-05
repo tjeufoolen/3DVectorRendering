@@ -1,6 +1,7 @@
 #include "point3d.h"
 
 #include <iostream>
+#include <cmath>
 
 namespace models {
     point3d::point3d(double x, double y, double z, double w)

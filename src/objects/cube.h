@@ -1,5 +1,5 @@
-#ifndef LINAL_EINDOPDRACHT_CUBE_H
-#define LINAL_EINDOPDRACHT_CUBE_H
+#ifndef CPP_3DVECTORRENDERING_CUBE_H
+#define CPP_3DVECTORRENDERING_CUBE_H
 
 #include "object.h"
 
@@ -10,4 +10,4 @@ namespace objects {
     };
 }
 
-#endif //LINAL_EINDOPDRACHT_CUBE_H
+#endif //CPP_3DVECTORRENDERING_CUBE_H
