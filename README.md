@@ -1,4 +1,4 @@
-# CPP_3DVectorRendering
+# 3DVectorRendering
 Basic c++ implementation of 3D rendering a vector object using mathematics.
 
 ## Dependencies
